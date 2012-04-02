@@ -1,0 +1,66 @@
+Requisitos para el ejercicio
+
+para aprovechar MongoBD en Django es necesario tener el siguiente 
+software instalado y en funcionamiento:
+
+Python - >= 2.6 preferible 2.7
+MongoDB - Supongo que esto es algo que se explica por sí mismo,pero 
+          es necesario tener instalado MongoDB.
+django-Norel - versión especial de django diseñado para 
+          uso con los motores de bases de datos no relacionales.
+django tooblox - una biblioteca de utilidad general de la cual 
+          depende el funcinamiento de django-mongodb
+django-mongodb motor - Driver MongoDB para Django.
+
+Implementando:
+
+Crear un proyecto en mi caso con el nombre diptera con una app
+llamada dipterapp.
+
+Luego en el settings.py configurar la db para MongoDB.
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django_mongodb_engine', 
+        'NAME': 'diptera',                      
+        'USER': '',                      
+        'PASSWORD': '',                  
+        'HOST': '',                      
+        'PORT': '',                      
+        'SUPPORTS_TRANSACTIONS':False,
+      },
+
+Luego de crear la aplicacion dipterapp en models.py
+
+from django.db import models
+
+class Article(models.Model):
+      title = models.CharField(max length = 64)
+      content = models.TextField()
+
+Son campos normales que se manejan en Django no hay necesidad
+de agregar el "id" porque MongoDB lo trabaja a traves de 
+ObjetcId 
+
+En el fichero views.py ingresamos la siguiente info para
+almacenar y a la vez crear la db en MongoDB
+
+from django.http import HttpResponse
+from models import *
+
+def testview(request):
+    article = Article(title = 'titulo ejemplo',
+    content = 'test content')
+    article.save()
+
+    return HttpResponse("<h1>Listo Salvado!</h1>")
+
+Si añade 'django_mongodb_engine' a tu lista de INSTALLED_APPS, 
+puede utilizar el comando tellsiteid para obtener ObjectId 
+el sitio predeterminado y actualizar la configuración 
+de SITE_ID en consecuencia:
+
+$ ./manage.py tellsiteid
+The default site's ID is u'deafbeefdeadbeef00000000'. 
+To use the sites framework, add this line to settings.py:
+SITE_ID=u'deafbeefdeadbeef00000000'
