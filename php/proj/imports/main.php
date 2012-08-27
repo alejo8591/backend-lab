@@ -3,13 +3,13 @@
  * This file include files
  * only used in index.php
 */
-require_once "imports/config.php";
-require_once "imports/con.php";
-require_once "imports/helpers.php";
-require_once "imports/models/product.model.php";
-require_once "imports/models/category.model.php";
-require_once "imports/controllers/home.controller.php";
-require_once "imports/controllers/category.controller.php";
+require_once "config.php";
+require_once "con.php";
+require_once "helpers.php";
+require_once "models/category.model.php";
+require_once "models/product.model.php";
+require_once "controllers/category.controller.php";
+require_once "controllers/home.controller.php";
 
 // optional
 
