@@ -5,7 +5,7 @@ class HomeController{
         render('home', array(
             'title' => 'Welcome to the jungle',
             'content' => $content
-                             ));
+        ));
     }
 }
 ?>
