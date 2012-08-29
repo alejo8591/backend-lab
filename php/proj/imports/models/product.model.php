@@ -4,10 +4,10 @@ class Product{
         global $db;
         
         if($arr['id']){
-            $st = $db->prepare("SELECT * FROM products WHERE id=:id");
+            $st = $db->prepare("SELECT * FROM products WHERE id= :id");
         }
         elseif($arr['category']){
-            $st = $db->prepare("SELECT * FROM products WHERE category=:category");
+            $st = $db->prepare("SELECT * FROM products WHERE category =: category");
         }
         else{
              throw new Exception("Unsupported property!");

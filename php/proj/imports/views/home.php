@@ -6,4 +6,4 @@
     </li>
     <?php render($content) ?>
 </ul>
-<?php  ?>
+<?php  render('_footer') ?>

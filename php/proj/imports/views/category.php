@@ -11,4 +11,4 @@
     </ul>
 </div>
 
-<?php render(_footer) ?>
+<?php render('_footer') ?>

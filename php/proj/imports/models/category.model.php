@@ -23,7 +23,8 @@ class Category{
          *The columns of each row will be added as public properties
          *to the object.
          */
-        return $st->fetchAll(PDO::FETCH_CLASS, "Category");
+        // Returns an array of Category objects:
+	return $st->fetchAll(PDO::FETCH_CLASS, "Category");
     }
 }
 ?>
