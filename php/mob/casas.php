@@ -5,7 +5,7 @@ if($id > 0){
 }
 
 function process($id){
-    $db = mysql_connect('localhost', 'root', '3193115');
+    $db = mysql_connect('localhost', '', '');
     if(!$id){
         die('Could not connect: ' . mysql_error());
     }
