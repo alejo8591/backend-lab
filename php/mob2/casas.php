@@ -11,10 +11,10 @@ function process($id){
     
     $db = mysql_connect('127.0.0.1', '', '');
     if(!$id){
-        die('NO HAY CONEXION: ' . mysql_error());
+        die('Could no connect: ' . mysql_error());
     }
     elseif(!mysql_select_db('mobphp')){
-        die('NO CONECTA DB:' . mysql_error());
+        die('Could no connect db:' . mysql_error());
     }
     else{
         $result = mysql_query("SELECT * FROM casas WHERE id=".$id);
