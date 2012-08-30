@@ -2,19 +2,14 @@
 include_once "aes.class.php";
 include_once "aesctr.class.php";
 $timer = microtime(true);
-// $id=$_GET['id'];
-$pw = isset($_POST['pw']) ? stripslashes($_POST['pw']) : '54321';
-$id = isset($_POST['pt']) ? stripslashes($_POST['id']) : 'pssst ... đon’t tell anyøne!';
-//$cipher = isset($_POST['cipher']) ? $_POST['cipher']: '';
-//$plain = isset($_POST['plain']) ? stripslashes($_POST['plain']): '';
-//$encr = isset($_POST['encr']) ? AesCtr::encrypt($pt, $pw, 256) : $cipher;
-(int) $decr = isset($_POST['decr']) ? AesCtr::decrypt($_POST['cipher'], $pw, 256) : AesCtr::decrypt($id, $pw, 256);
+$pw = '54321';
+(int) $decr = AesCtr::decrypt($_GET['id'], $pw, 256);
 
 process($decr);
 
 function process($id){
     
-    $db = mysql_connect('127.0.0.1', 'root', 'root');
+    $db = mysql_connect('127.0.0.1', '', '');
     if(!$id){
         die('NO HAY CONEXION: ' . mysql_error());
     }
