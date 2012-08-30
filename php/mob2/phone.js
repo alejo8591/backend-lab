@@ -473,11 +473,20 @@ var getdetails = function(id){
          }
     }); 
  };
- 
-var restults = function(data){
+/*
+ var restults = function(data){
     $("div.info").html("").show();
     $("div.info").append("ID: "+data.id);
     $("div.info").append("M2: "+data.m2);
     $("div.info").append("Habitats: "+data.hab);
     $("div.info").append("Localizacion: "+data.direccion);
+}
+*/
+ 
+var restults = function(data){
+    $("div.info").html("").show();
+    $("div.info").append("ID: "+Aes.Ctr.decrypt(data.id, '54321', 256));
+    $("div.info").append("M2: "+Aes.Ctr.decrypt(data.m2, '54321', 256));
+    $("div.info").append("Habitats: "+Aes.Ctr.decrypt(data.hab, '54321', 256));
+    $("div.info").append("Localizacion: "+Aes.Ctr.decrypt(data.direccion, '54321', 256));
 }
