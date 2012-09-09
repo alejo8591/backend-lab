@@ -1,0 +1,486 @@
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}									
+
+article, aside, figure, footer, header, hgroup, nav, section {display: block;}
+
+img,
+object,
+embed {max-width: 100%;}
+
+html {overflow-y: scroll;}
+
+ul {list-style: none;}
+
+blockquote, q {quotes: none;}
+
+blockquote:before, 
+blockquote:after, 
+q:before, 
+q:after {content: ''; content: none;}
+
+a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+
+del {text-decoration: line-through;}
+
+abbr[title], dfn[title] {border-bottom: 1px dotted #000; cursor: help;}
+
+table {border-collapse: collapse; border-spacing: 0;}
+th {font-weight: bold; vertical-align: bottom;}
+td {font-weight: normal; vertical-align: top;}
+
+hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+
+input, select {vertical-align: middle;}
+
+pre {
+	white-space: pre; /* CSS2 */
+	white-space: pre-wrap; /* CSS 2.1 */
+	white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+	word-wrap: break-word; /* IE */
+}
+
+input[type="radio"] {vertical-align: text-bottom;}
+input[type="checkbox"] {vertical-align: bottom; *vertical-align: baseline;}
+.ie6 input {vertical-align: text-bottom;}
+
+select, input, textarea {font: 99% sans-serif;}
+
+table {font-size: inherit; font: 100%;}
+ 
+a:hover, a:active {outline: none;}
+
+small {font-size: 85%;}
+
+strong, th {font-weight: bold;}
+
+td, td img {vertical-align: top;} 
+
+/* Make sure sup and sub don't screw with your line-heights
+	gist.github.com/413930 */
+sub, sup {font-size: 75%; line-height: 0; position: relative;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+
+/* standardize any monospaced elements */
+pre, code, kbd, samp {font-family: monospace, sans-serif;}
+
+.clickable,
+label, 
+input[type=button], 
+input[type=submit], 
+button {cursor: pointer;}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea {margin: 0;}
+
+/* make buttons play nice in IE */
+button {width: auto; overflow: visible;}
+ 
+/* scale images in IE7 more attractively */
+.ie7 img {-ms-interpolation-mode: bicubic;}
+
+/* prevent BG image flicker upon hover */
+.ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));}
+
+/* let's clear some floats */
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.clearfix:after { clear: both; }  
+.clearfix { zoom: 1; }  
+
+
+
+/* Ok, this is where the fun starts.
+-------------------------------------------------------------------------------*/
+
+/* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
+body {font: 14px Arial, Helvetica, sans-serif; background:#BDBDBD; line-height:20px; }
+
+/* we like off-black for text */
+body, select, input, textarea {color:#333;}
+
+a {color: #FF8000; text-decoration:none; }
+a:hover {color: #FF4000;}
+
+/* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
+::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
+::selection {background: #fcd700; color: #fff; text-shadow: none;} 
+
+/*	j.mp/webkit-tap-highlight-color */
+a:link {-webkit-tap-highlight-color: #fcd700;} 
+
+ins {background-color: #fcd700; color: #000; text-decoration: none;}
+mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
+
+/*Styles of the site*/
+
+.btn-orange, .btn-blue{
+	border-radius: 3px;
+	box-shadow:0 0 6px #666;
+	color:#FFF;
+	display:block;
+	font-size:1.3em;
+	height:44px;
+	line-height:44px;
+	text-align:center;
+}
+
+.btn-orange:hover, .btn-blue:hover{
+	color:#FFF;
+	box-shadow:0 0 4px #333;
+}
+
+.btn-orange{
+	background: url('../images/btn-orange.jpg') repeat-x;
+	font-weight:bold;
+}
+
+.btn-blue{
+	background: url('../images/btn-blue.jpg') repeat-x;
+}
+
+#wrapper,
+header,
+#maqueta-course
+#tems,
+#banner,
+#forms,
+footer{
+	height:auto;
+	margin:0 auto;
+	overflow:hidden;
+	width: 960px;
+}
+
+#wrapper{
+}
+
+header{
+	background: url('../images/top.jpg') no-repeat;
+	height:120px;
+}
+
+header h1{
+	display:none;
+	text-indent:-9999999;
+}
+
+header #logo{
+	float:left;
+	margin:20px;
+	padding:0;
+	overflow:hidden;
+}
+
+header #marcas{
+	float:right;
+	margin:25px 20px 0 0;
+}
+
+header #marcas img{
+	float:left;
+	margin-left:10px;
+}
+
+#banner{
+	background: url('../images/banner.jpg') no-repeat;
+	border-bottom:5px solid #FFF;
+	height:300px;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+
+#banner #inscrip{
+	float:right;
+	margin:230px 50px 0 0;
+	width: 120px;
+}
+
+#maqueta-course{
+	background-color:#F2F2F2;
+	border-top:1px solid #666;
+	color:#666;
+	padding:30px;
+}
+
+#maqueta-course div{
+	background: url('../images/divs.png') no-repeat;
+	background-position: bottom;
+	margin-bottom:20px;
+	overflow:hidden;
+}
+
+#maqueta-course h2{
+	font-size:2em;
+	margin-bottom:1em;
+	padding:5px;
+}
+
+#maqueta-course p{
+	text-align:justify;
+	margin-bottom:1em;
+}
+
+#maqueta-course article{
+	overflow:hidden;
+	text-align:center;
+}
+
+#maqueta-course ul{
+	overflow:hidden;
+	margin-bottom:20px;
+}
+
+#maqueta-course .req-data{
+	display:inline-block;
+	padding:5px 30px;
+	vertical-align:top;
+	width:220px;
+}
+
+#maqueta-course .req-data h3{
+	margin:0 auto 20px auto;
+	width: 200px;
+}
+
+#maqueta-course .req-data p{
+	text-align:left;
+	margin:5px;
+}
+
+#maqueta-course #regist h3{
+	background:#14D0FE;
+	color:#FFF;
+	font-size:1.5em;
+	margin-bottom:20px;
+	padding:5px;
+}
+
+#maqueta-course #regist form {
+    width:450px;
+    margin:auto auto 30px auto;
+}
+
+#maqueta-course #regist p{
+	margin-bottom:10px;
+	text-align:center;
+}
+
+#maqueta-course #regist form ol{
+    list-style:none;
+}
+
+#maqueta-course #regist form ol li{
+    padding-bottom:10px;
+}
+
+#maqueta-course #regist form ol li label{
+    width:120px;
+    float:left;
+    text-align:right;
+}
+
+#maqueta-course #regist form input[type=email],
+#maqueta-course #regist form input[type=text]{
+    border:1px solid #CCC;
+    padding:5px;
+    width:300px;
+}
+
+#maqueta-course #regist form input[type=file]{
+	width:300px;
+}
+
+#maqueta-course #regist form input[type=submit]{
+    border:none;
+	margin:10px auto;
+}
+
+#tems h2{
+	background:#FF8000;
+	color:#FFF;
+	font-size:2em;
+	height:50px;
+	line-height:50px;
+	padding-left:35px;
+	width:100%;
+}
+
+#tems article{
+	background:#14D0FE;
+	overflow:hidden;
+}
+
+#tems ul{
+	overflow:hidden;
+}
+
+#tems ul li{
+	color:#FFF;
+	float:left;
+	overflow:hidden;
+	width:320px;
+}
+
+#tems .tem-day1{
+	background:#5DDFFF;
+	height:840px;
+	padding-bottom:20px;
+}
+
+#tems .tem-day1 p, #tems .tem-day2 p{
+	text-align:justify;
+	padding:5px;
+}
+
+#tems .tem-day1 div{
+	margin-left:30px;
+}
+
+#tems .tem-day1 h3{
+	background:#FF8000;
+	font-size:2em;
+	height:60px;
+	line-height:60px;
+	margin:10px 0 20px 0;
+	padding-left:10px;
+}
+
+#tems .tem-day1 ul{
+	margin-left:20px;
+	margin-bottom:10px;
+	overflow:hidden;
+	width:260px;
+}
+
+ #tems .tem-day2 ul{
+	margin-left:30px;
+	margin-bottom:10px;
+	overflow:hidden;
+	width:260px;
+ }
+
+#tems .tem-day1 ul li, #tems .tem-day2 ul li{
+	margin-left:10px;
+	padding-left:10px;
+	width:240px;
+}
+
+#tems .tem-day2{
+	padding-bottom:20px;
+}
+
+#tems .tem-day2 p{
+	margin-left:20px;
+	width:260px;
+}
+
+#tems .tem-day2 h3{
+	background:#FF8000;
+	font-size:2em;
+	height:60px;
+	line-height:60px;
+	margin:10px 0 20px 0;
+	padding-left:30px;
+}
+
+#forms{
+	background:#FFF;
+}
+
+#forms h2{
+	background:#FF8000;
+	color:#FFF;
+	font-size:2em;
+	height:60px;
+	line-height:60px;
+	margin:5px 0 20px 0;
+	padding-left:30px;
+	width:290px;
+}
+
+#forms article{
+	overflow:hidden;
+}
+
+#forms ul{
+	text-align:center;
+	overflow:hidden;
+}
+
+#forms .form{
+	display:inline-block;
+	vertical-align:top;
+	margin-bottom:20px;
+	width:450px;
+}
+
+#forms .form h3{
+	color:#00BFFF;
+	font-size:1.5em;
+}
+
+#forms .form small{
+	color:#00BFFF;
+	display:block; 
+	font-size:1em;
+	margin-bottom:20px;
+}
+
+#forms .form p{
+	color:#666;
+	font-size:0.9em;
+	margin-bottom:10px;
+	padding-right:20px;
+	text-align:left;
+}
+
+#forms .form img{
+	border:5px solid #FFF;
+	box-shadow:0 0 4px #666;
+	float:left;
+	margin:0 20px 15px 0;
+}
+
+footer{
+	background:#FF8000;
+	color:#FFF;
+	font-size:1.5em;
+	overflow:hidden;
+}
+
+footer p{
+	float:left;
+	line-height:50px;
+	margin:20px;
+}
+
+footer img{
+	float:right;
+	margin:20px;
+}
+
+/* Media queries!
+-------------------------------------------------------------------------------*/
+
+/* Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
+@media screen and (max-device-width: 480px) {
+	
+		
+}
+
+@media all and (orientation: portrait) {
+	
+}
+
+@media all and (orientation: landscape) {
+	
+}
+
