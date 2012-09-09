@@ -1,4 +1,5 @@
 var getdetails = function(id){
+    id = Aes.Ctr.encrypt(id, '54321', 256);
     $.ajax({
           data: "id="+id,
           type: "GET",
