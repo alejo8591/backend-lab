@@ -5,3 +5,5 @@ imagenes/
 *.jpg
 images/
 img/
+node_modules/
+**/node_modules/
