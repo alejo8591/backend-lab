@@ -10,3 +10,4 @@ node_modules/
 venv/
 tut/venv/
 *.pyc
+.DS_Store
