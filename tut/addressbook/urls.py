@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', contacts.views.ListContactView.as_view(), name='contact-list',),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^new/$', contacts.views.CreateContactView.as_view(), name='contact-new',),
 )
