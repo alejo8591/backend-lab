@@ -15,3 +15,14 @@ class Contact(models.Model):
 			self.first_name,
 			self.last_name,
 		])
+
+class Address(models.Model):
+	contact = models.ForeignKey(Contact)
+	address_type = models.CharField(max_length=60)
+	adress = models.CharField(max_length=255)
+	city = models.CharField(max_length=255)
+	state = models.CharField(max_length=4)
+	postal_code = models.CharField(max_length=20)
+
+	class Meta:
+		unique_together = ('contact', 'address_type',)
