@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^new/$', contacts.views.CreateContactView.as_view(), name='contact-new',),
     url(r'^edit/(?P<pk>\d+)/$', contacts.views.UpdateContactView.as_view(), name='contact-edit',),
+    url(r'^delete/(?P<pk>\d+)/$', contacts.views.DeleteContactView.as_view(), name='contact-delete',),
 )
 
 # Static URL files

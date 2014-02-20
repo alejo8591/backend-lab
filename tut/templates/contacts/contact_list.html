@@ -5,6 +5,7 @@
 	{% for contact in object_list %}
 	<li class="contact list-group-item">{{ contact }}
 		(<a href="{% url 'contact-edit' pk=contact.id %}">Edit</a>)
+		(<a href="{% url 'contact-delete' pk=contact.id %}">Delete</a>)
 	</li>
 	{% endfor %}
 </ul>

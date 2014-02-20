@@ -1,8 +1,15 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.views.generic import View, ListView, CreateView, UpdateView
+from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView
 from contacts.models import Contact
+
+class DeleteContactView(DeleteView):
+	model = Contact
+	template_name = 'contacts/delete_contact.html'
+
+	def get_success_url(self):
+		return reverse('contact-list')
 
 class UpdateContactView(UpdateView):
 	model = Contact
