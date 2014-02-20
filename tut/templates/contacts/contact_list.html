@@ -1,7 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
 <h1>Contacts</h1>
-<ul>
+<ul class="list-group">
 	{% for contact in object_list %}
-	<li class="contact">{{ contact }}</li>
+	<li class="contact list-group-item">{{ contact }}</li>
 	{% endfor %}
 </ul>
-<a href="/new">add contact</a>
+<a href="/new" class="btn btn-primary">add contact</a>
+{% endblock %}

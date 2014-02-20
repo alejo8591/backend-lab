@@ -88,3 +88,7 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     join(BASE_DIR,  'templates'),
 )
+
+STATICFILES_DIRS = (
+    join(BASE_DIR, 'static',),
+)
