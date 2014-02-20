@@ -3,7 +3,9 @@
 <h1>Contacts</h1>
 <ul class="list-group">
 	{% for contact in object_list %}
-	<li class="contact list-group-item">{{ contact }}</li>
+	<li class="contact list-group-item">{{ contact }}
+		(<a href="{% url 'contact-edit' pk=contact.id %}">Edit</a>)
+	</li>
 	{% endfor %}
 </ul>
 <a href="/new" class="btn btn-primary">add contact</a>
