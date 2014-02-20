@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import forms
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -18,6 +19,7 @@ class DeleteContactView(DeleteView):
 class UpdateContactView(UpdateView):
 	model = Contact
 	template_name = 'contacts/edit_contact.html'
+	form_class = forms.ContactForm
 
 	def get_success_url(self):
 		return reverse('contact-list')
@@ -29,9 +31,10 @@ class UpdateContactView(UpdateView):
 		return context
 
 class CreateContactView(CreateView):
+	
 	model = Contact
-
 	template_name = 'contacts/edit_contact.html'
+	form_class = forms.ContactForm
 
 	def get_success_url(self):
 		return reverse('contact-list')
