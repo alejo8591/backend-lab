@@ -3,7 +3,7 @@
 <h1>Contacts</h1>
 <ul class="list-group">
 	{% for contact in object_list %}
-	<li class="contact list-group-item">{{ contact }}
+	<li class="list-group-item"><span class="contact">{{ contact }}</span>
 		(<a href="{{ contact.get_absolute_url }}">Details</a>)
 		(<a href="{% url 'contact-edit' pk=contact.id %}">Edit</a>)
 		(<a href="{% url 'contact-delete' pk=contact.id %}">Delete</a>)

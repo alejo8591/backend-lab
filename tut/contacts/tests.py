@@ -3,6 +3,8 @@ from django.test.client import Client, RequestFactory
 from contacts.models import Contact
 from contacts.views import *
 from selenium.webdriver.firefox.webdriver import WebDriver
+from rebar.testing import flatten_to_dict
+from contacts.forms import ContactForm
 
 class ContactTest(TestCase):
 	""" Contact models tests. """
@@ -38,6 +40,7 @@ class ContactListViewTest(TestCase):
 		response = ListContactView.as_view()(request)
 		self.assertEquals(response.context_data['object_list'].count(), 1)
 
+
 class ContactListIntegrationTests(LiveServerTestCase):
 
 	@classmethod
@@ -67,6 +70,7 @@ class ContactListIntegrationTests(LiveServerTestCase):
 		self.assert_(
 			self.selenium.find_element_by_link_text('add contact')
 		)
+	
 	def test_add_contact(self):
 
 		self.selenium.get('%s%s' % (self.live_server_url, '/'))
@@ -75,10 +79,34 @@ class ContactListIntegrationTests(LiveServerTestCase):
 		self.selenium.find_element_by_id('id_first_name').send_keys('test')
 		self.selenium.find_element_by_id('id_last_name').send_keys('contact')
 		self.selenium.find_element_by_id('id_email').send_keys('test@test.co')
+		self.selenium.find_element_by_id('id_confirm_email').send_keys('test@test.co')
 
 		self.selenium.find_element_by_id('save_contact').click()
 
-		self.assertEqual(
-			self.selenium.find_elements_by_css_selector('.contact')[-1].text, 'test contact'
-		)
+		self.assertEqual(self.selenium.find_elements_by_css_selector('.contact')[-1].text, 'test contact')
 
+class EditContactFormTest(TestCase):
+	
+	def test_mismatch_email_is_invalid(self):
+
+		form_data = flatten_to_dict(forms.ContactForm())
+
+		form_data['first_name'] = 'Edwin'
+		form_data['last_name'] = 'Chuky'
+		form_data['email'] = 'chuky@chukyman.com'
+		form_data['confirm_email'] = 'chuk@chukyman.com'
+
+		bound_form = forms.ContactForm(data=form_data)
+		self.assertFalse(bound_form.is_valid())
+
+	def test_mismatch_email_is_invalid(self):
+
+		form_data = flatten_to_dict(forms.ContactForm())
+
+		form_data['first_name'] = 'Edwin'
+		form_data['last_name'] = 'Chuky'
+		form_data['email'] = 'chuky@chukyman.com'
+		form_data['confirm_email'] = 'chuky@chukyman.com'
+
+		bound_form = forms.ContactForm(data=form_data)
+		self.assert_(bound_form.is_valid())
