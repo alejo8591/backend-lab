@@ -8,3 +8,6 @@ img/
 node_modules/
 **/node_modules/
 venv/
+tut/venv/
+*.pyc
+.DS_Store
