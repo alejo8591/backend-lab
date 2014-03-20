@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>{{ title }}</h1>
+	<ul>
+		{% for category in categories %}
+		<li><a href="{{ category.slug }}">{{ category.name|capfirst }}</a></li>
+		{% endfor %}
+	</ul>
+</body>
+</html>
