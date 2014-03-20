@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>{{ title }}</title>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>{{ title }}</h1>
+	<ul>
+		<li>Name: {{ item.name }}</li>
+		<li>Category: {{ item.category.name }}</li>
+		<li>Listing Type: {{ item.get_listing_display }}</li>
+		<li>Deparment: {{ item.deparment }}</li>
+		<li>Posted: {{ item.posted_on|date }}</li>
+	</ul>
+	<h3>Description</h3>
+	<p>{{ item.desciption|linebreaksbr }}</p>
+</body>
+</html>
