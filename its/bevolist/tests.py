@@ -1,5 +1,5 @@
 from django.test import TestCase
-from bevolist.models import *
+from bevolist.models import Item, Category
 
 class TestBevolist(TestCase):
 
@@ -18,3 +18,25 @@ class TestBevolist(TestCase):
 		self.assertEqual(response.status_code, 200)
 		response = self.client.get('/bevolist/category/bless/')
 		self.assertEqual(response.status_code, 404)
+	
+	def test_category_hardware(self):
+		response = self.client.get('/bevolist/category/hardware/')
+		print response
+		self.assertContains(response, 'Computers')
+		self.assertContains(response, 'Servers')
+		self.assertNotContains(response, 'Quake')
+	
+	def test_category_software(self):
+		response = self.client.get('/bevolist/category/software/')
+		self.assertContains(response, 'Adobe')
+		self.assertContains(response, 'Matlab')
+		self.assertContains(response, 'Quake')
+		self.assertNotContains(response, 'Servers')
+	
+	def test_category_misc(self):
+		response = self.client.get('/bevolist/category/misc-hardware/')
+		self.assertNotContains(response, 'Adobe')
+		self.assertNotContains(response, 'Matlab')
+		self.assertNotContains(response, 'Quake')
+		self.assertNotContains(response, 'Servers')
+		self.assertNotContains(response, 'Computers')

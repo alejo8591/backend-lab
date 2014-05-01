@@ -24,10 +24,12 @@ def category(request):
 
 def category_details(request, slug):
 	category = get_object_or_404(Category, slug=slug)
+	items = Item.objects.select_related(slug)
 
 	context = Context({
-		'title' : 'Category: %s' %category.name,
-		'category' : category
+		'title' : 'Category: %s' % category.name,
+		'category' : category,
+		'items' : items
 	})
 
 	return render_to_response('bevolist/category.html', context)
