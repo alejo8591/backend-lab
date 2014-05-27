@@ -1,9 +1,11 @@
 CACHE MANIFEST
-# Revision 1401136946542
+# Revision 1401174461646
 
 CACHE:
 index.html
 intro_django/README.html
+intro_django/creando_proyecto_en_django.html
+intro_django/creando_una_aplicacion_en_django.html
 gitbook/app.js
 gitbook/fonts/anonymouspro/400.woff
 gitbook/fonts/anonymouspro/400i.woff

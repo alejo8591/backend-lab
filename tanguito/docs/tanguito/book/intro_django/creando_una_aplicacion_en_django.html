@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Introducción Django | Django desde la trinchera</title>
+        <title>Creando una Aplicación en Django | Django desde la trinchera</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,11 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../intro_django/creando_proyecto_en_django.html" />
         
-        
-        <link rel="prev" href="../index.html" />
+        <link rel="prev" href="../intro_django/creando_proyecto_en_django.html" />
         
 
-        <meta property="og:title" content="Introducción Django | Django desde la trinchera">
+        <meta property="og:title" content="Creando una Aplicación en Django | Django desde la trinchera">
         <meta property="og:site_name" content="Django desde la trinchera">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +40,7 @@
 
 
         
-    <div class="book" data-github="alejo8591/backend-lab" data-level="1" data-basepath=".." data-revision="1401174461645">
+    <div class="book" data-github="alejo8591/backend-lab" data-level="1.2" data-basepath=".." data-revision="1401174461645">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -120,7 +118,7 @@
 
         
         <li>
-            <a href="https://github.com/alejo8591/backend-lab/edit/master/intro_django/README.md" target="blank" class="contribute-link">Edit and Contribute</a>
+            <a href="https://github.com/alejo8591/backend-lab/edit/master/intro_django/creando_una_aplicacion_en_django.md" target="blank" class="contribute-link">Edit and Contribute</a>
         </li>
         
 
@@ -174,7 +172,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 33.333333333333336%;min-width: 0%;"></div>
+        <div class="inner" style="width: 100%;min-width: 66.66666666666667%;"></div>
     </div>
     <div class="chapters">
     
@@ -182,47 +180,42 @@
     
         <a href="../intro_django/README.html" title="Introducción Django" class="chapter done new-chapter" data-progress="1" style="left: 33.333333333333336%;"></a>
     
-        <a href="../intro_django/creando_proyecto_en_django.html" title="Creando Proyecto en Django" class="chapter  " data-progress="1.1" style="left: 66.66666666666667%;"></a>
+        <a href="../intro_django/creando_proyecto_en_django.html" title="Creando Proyecto en Django" class="chapter done " data-progress="1.1" style="left: 66.66666666666667%;"></a>
     
-        <a href="../intro_django/creando_una_aplicacion_en_django.html" title="Creando una Aplicación en Django" class="chapter  " data-progress="1.2" style="left: 100%;"></a>
+        <a href="../intro_django/creando_una_aplicacion_en_django.html" title="Creando una Aplicación en Django" class="chapter done " data-progress="1.2" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_506">
+                    <section class="normal" id="section-gitbook_508">
                     
-                        <h1 id="1-introducci-n-a-django">1. Introducción a Django</h1>
-<pre><code class="lang-sh">$ virtualenv venv
-New python executable in venv/bin/python
-Installing Setuptools..............................................................................................................................................................................................................................done.
-Installing Pip.....................................................................................................................................................................................................................................................................................................................................done.
+                        <h1 id="1-2-creando-una-aplicaci-n-en-django">1.2. Creando una Aplicación en Django</h1>
+<p>Un proyecto en Django es una colección de configuraciones y aplicaciones que componen una aplicación web determinada o página web. Uno de los resultados esperados de la utilización de este enfoque es el de promover las buenas prácticas de ingeniería de software.</p>
+<p>Existe una aplicación Django para realizar una tarea en particular. Es necesario crear aplicaciones específicas que son responsables de proporcionar al proyecto con cierto tipo particular de funcionalidades. Por ejemplo, podríamos imaginar que un proyecto puede consistir en varias aplicaciones, incluyendo una aplicación de votación, una aplicación de registro, y una aplicación relacionada con contenido específico. En otro proyecto, es posible que desee volver a utilizar la aplicación de votación y la aplicaciones de registro y utilizarlos para enviar, mostrar, publicar contenido diferente. Hay muchas aplicaciones Django que puede descargar y utilizar en sus proyectos. Vamos a creando nuestra propia aplicación.</p>
+<p>Para empezar , cree una nueva aplicación llamada <code>rango</code>. Desde dentro de su directorio de proyecto Django (por ejemplo <code>&lt;workspace&gt;/tanguito</code>), ejecute el comando siguiente:</p>
+<p><code>(venv)$ python manage.py startapp rango</code></p>
+<p>El comando <code>startapp</code> crea un nuevo directorio en la raíz del proyecto. Como era de esperar, este directorio se llama <code>rango</code> - y contiene en su interior otros cuatro scripts de Python:</p>
+<ul>
+<li><code>__init__.py</code>, sirviendo el mismo propósito exacto como se indicó anteriormente;
+*<code>models.py</code>, un lugar para almacenar los modelos de datos de la aplicación - donde se especifica las entidades y relaciones entre los datos,</li>
+<li><code>tests.py</code>, donde usted puede almacenar una serie de funciones para probar el código de su aplicación, es de los más importantes,</li>
+<li><code>views.py</code>, donde usted puede almacenar una serie de funciones que toman las solicitudes del cliente y devuelven respuestas.</li>
+</ul>
+<p><code>views.py</code> y <code>models.py</code> son los dos archivos que va a utilizar para cualquier aplicación dada, y forman parte de los principales patrones de diseño arquitectónico empleado por Django, es decir, el patrón <code>Model-View-Template</code>. Usted puede comprobar la <a href="https://docs.djangoproject.com/en/1.6/intro/overview/" target="_blank">documentación oficial de Django</a> para ver como modelos, vistas y plantillas se relacionan entre sí en más detalle.</p>
+<p>Antes de poder empezar con la creación de sus propios modelos y vistas, debe configurar en su proyecto Django acerca de la existencia de su nueva aplicación. Para ello, es necesario modificar el archivo <code>settings.py</code>, contenido dentro del directorio de configuración de su proyecto <code>tanguito</code>. Abra el archivo y busque la tupla <code>INSTALLED_APPS</code>. Agregue la aplicación <code>rango</code> hasta el final de la tupla, que luego debe ser similar al siguiente ejemplo:</p>
+<pre><code class="lang-python">INSTALLED_APPS = (
+    <span class="hljs-string">'django.contrib.admin'</span>,
+    <span class="hljs-string">'django.contrib.auth'</span>,
+    <span class="hljs-string">'django.contrib.contenttypes'</span>,
+    <span class="hljs-string">'django.contrib.sessions'</span>,
+    <span class="hljs-string">'django.contrib.messages'</span>,
+    <span class="hljs-string">'django.contrib.staticfiles'</span>,
+    <span class="hljs-string">'rango'</span>,
+)
 </code></pre>
-<p>Activación del entorno de desarrollo</p>
-<pre><code class="lang-sh">source venv/bin/activate
-(venv)➜  tanguito git:(master) ✗
-</code></pre>
-<p>Instalación de Django</p>
-<pre><code class="lang-sh"> (venv)$ pip install django
-</code></pre>
-<p>Instalando libreria de imagenes:</p>
-<pre><code class="lang-sh">(venv)$ pip install PIL
-</code></pre>
-<h2 id="test-del-setup">Test del Setup</h2>
-<p>Vamos a empezar por la comprobación de la instalaciones de Python, junto con Django, si, se han instalado correctamente, y se encuentran en la versión correcta para este tutorial:</p>
-<blockquote>
-<p>Para Python:</p>
-</blockquote>
-<pre><code class="lang-bash">(venv)$ python --version
-<span class="hljs-number">2.7</span>.<span class="hljs-number">5</span>
-</code></pre>
-<blockquote>
-<p>Para Django:</p>
-</blockquote>
-<pre><code class="lang-bash">(venv)$ python -c <span class="hljs-string">"import django; print(django.get_version())"</span>
-<span class="hljs-number">1.6</span>.<span class="hljs-number">5</span>
-</code></pre>
+<p>Verifique que Django &quot;registro&quot; su nueva aplicación ejecutando el servidor de desarrollo de nuevo. Si puede iniciar el servidor sin errores, su aplicación fue configuradad y usted estará listo para continuar con el siguiente paso.</p>
 
                     
                     </section>
@@ -232,10 +225,8 @@ Installing Pip..................................................................
         </div>
 
         
-        <a href="../index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        <a href="../intro_django/creando_proyecto_en_django.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Creando Proyecto en Django"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../intro_django/creando_proyecto_en_django.html" class="navigation navigation-next " aria-label="Next page: Creando Proyecto en Django"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

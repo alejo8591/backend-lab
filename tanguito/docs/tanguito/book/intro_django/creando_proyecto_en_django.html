@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Introducción Django | Django desde la trinchera</title>
+        <title>Creando Proyecto en Django | Django desde la trinchera</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../intro_django/creando_proyecto_en_django.html" />
+        <link rel="next" href="../intro_django/creando_una_aplicacion_en_django.html" />
         
         
-        <link rel="prev" href="../index.html" />
+        <link rel="prev" href="../intro_django/README.html" />
         
 
-        <meta property="og:title" content="Introducción Django | Django desde la trinchera">
+        <meta property="og:title" content="Creando Proyecto en Django | Django desde la trinchera">
         <meta property="og:site_name" content="Django desde la trinchera">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="alejo8591/backend-lab" data-level="1" data-basepath=".." data-revision="1401174461645">
+    <div class="book" data-github="alejo8591/backend-lab" data-level="1.1" data-basepath=".." data-revision="1401174461645">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -120,7 +120,7 @@
 
         
         <li>
-            <a href="https://github.com/alejo8591/backend-lab/edit/master/intro_django/README.md" target="blank" class="contribute-link">Edit and Contribute</a>
+            <a href="https://github.com/alejo8591/backend-lab/edit/master/intro_django/creando_proyecto_en_django.md" target="blank" class="contribute-link">Edit and Contribute</a>
         </li>
         
 
@@ -174,7 +174,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 33.333333333333336%;min-width: 0%;"></div>
+        <div class="inner" style="width: 66.66666666666667%;min-width: 33.333333333333336%;"></div>
     </div>
     <div class="chapters">
     
@@ -182,7 +182,7 @@
     
         <a href="../intro_django/README.html" title="Introducción Django" class="chapter done new-chapter" data-progress="1" style="left: 33.333333333333336%;"></a>
     
-        <a href="../intro_django/creando_proyecto_en_django.html" title="Creando Proyecto en Django" class="chapter  " data-progress="1.1" style="left: 66.66666666666667%;"></a>
+        <a href="../intro_django/creando_proyecto_en_django.html" title="Creando Proyecto en Django" class="chapter done " data-progress="1.1" style="left: 66.66666666666667%;"></a>
     
         <a href="../intro_django/creando_una_aplicacion_en_django.html" title="Creando una Aplicación en Django" class="chapter  " data-progress="1.2" style="left: 100%;"></a>
     
@@ -191,38 +191,39 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_506">
+                    <section class="normal" id="section-gitbook_507">
                     
-                        <h1 id="1-introducci-n-a-django">1. Introducción a Django</h1>
-<pre><code class="lang-sh">$ virtualenv venv
-New python executable in venv/bin/python
-Installing Setuptools..............................................................................................................................................................................................................................done.
-Installing Pip.....................................................................................................................................................................................................................................................................................................................................done.
+                        <h1 id="1-1-creando-proyecto-en-django">1.1. Creando Proyecto en Django</h1>
+<p>Para crear un nuevo proyecto de Django, vaya a su directorio de código (es decir, el directorio <code>&lt;workspace&gt;</code>), y ejecute el comando siguiente:</p>
+<p><code>(venv)$ python django-admin.py startproject tanguito</code></p>
+<p>Este comando invoca el script <code>django-admin.py</code>, que pondrá en marcha un nuevo proyecto llamado Django <code>tanguito</code>.
+Ahora se dará cuenta dentro de su área de trabajo <code>&lt;workspace&gt;</code> es un directorio que se establece en el nombre del nuevo proyecto, <code>tanguito</code>.
+Dentro de este directorio recién creado, verá que hay dos elementos:</p>
+<p>Un directorio con el mismo nombre que el proyecto, <code>tanguito</code>; y un script de Python llamada <code>manage.py</code>. Dentro del directorio del proyecto encontramos los siguientes documentos:</p>
+<p><strong>init</strong>.py, un script Python blanco cuya presencia indica al intérprete de Python que el directorio es un paquete de Python;</p>
+<ul>
+<li><code>settings.py</code>, script <code>Python</code> donde se esta toda la configuración del proyecto construido con Django;</li>
+<li><code>urls.py</code>, Almacena patrones de URL del proyecto; y</li>
+<li><code>wsgi.py</code>, Se usa para ayudar a administrar el servidor de desarrollo e implementar el proyecto en un entorno de producción.</li>
+</ul>
+<p>En el directorio del proyecto, usted verá que hay un archivo llamado <code>manage.py</code>. Estaremos llamando a este script a medida que desarrollamos nuestro proyecto, ya que le proporciona una serie de comandos que se pueden ejecutar para mantener su proyecto Django. Por ejemplo, <code>manage.py</code> le permite ejecutar el servidor de desarrollo integrado de Django para poner a prueba su código y ejecutar comandos para interactuar con la base de datos. Este script se utiliza mucho a lo largo del ciclo de desarrollo.</p>
+<p>Ahora vamos a utilizar el script <code>manage.py</code> para tener el primer acercamiento de que nuestro proyecto funciona:</p>
+<p><code>(venv)$ python manage.py runserver</code></p>
+<p>Al ejecutar este comando le indicará a Django iniciar el servidor de desarrollo de peso ligero. Usted debe ver a la salida en su terminal similar al ejemplo que se muestra a continuación:</p>
+<pre><code class="lang-sh">(venv)$ python manage.py runserver
+
+Validating models...
+
+0 errors found
+September 21, 2013 - 06:12:41
+Django version 1.5.4, using settings &#39;tango_with_django_project.settings&#39;
+Development server is running at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
 </code></pre>
-<p>Activación del entorno de desarrollo</p>
-<pre><code class="lang-sh">source venv/bin/activate
-(venv)➜  tanguito git:(master) ✗
-</code></pre>
-<p>Instalación de Django</p>
-<pre><code class="lang-sh"> (venv)$ pip install django
-</code></pre>
-<p>Instalando libreria de imagenes:</p>
-<pre><code class="lang-sh">(venv)$ pip install PIL
-</code></pre>
-<h2 id="test-del-setup">Test del Setup</h2>
-<p>Vamos a empezar por la comprobación de la instalaciones de Python, junto con Django, si, se han instalado correctamente, y se encuentran en la versión correcta para este tutorial:</p>
-<blockquote>
-<p>Para Python:</p>
-</blockquote>
-<pre><code class="lang-bash">(venv)$ python --version
-<span class="hljs-number">2.7</span>.<span class="hljs-number">5</span>
-</code></pre>
-<blockquote>
-<p>Para Django:</p>
-</blockquote>
-<pre><code class="lang-bash">(venv)$ python -c <span class="hljs-string">"import django; print(django.get_version())"</span>
-<span class="hljs-number">1.6</span>.<span class="hljs-number">5</span>
-</code></pre>
+<p>Puede detener el servidor de desarrollo en cualquier momento presionando <code>CTRL + C</code> en la ventana de terminal.</p>
+<p>Para utilizar un puerto diferente al que viene definido por defecto en Django, lo puede hacer de siguiente manera:</p>
+<p><code>(venv)$ python manage.py runserver &lt;your_ip_address&gt;:5555</code></p>
+<p>Al indicar los puertos, es poco probable poder utilizar el puerto TCP 80, ya que tradicionalmente esta reservado para el tráfico HTTP. También, cualquier puerto por debajo de 1024 es considerada como privilegiada por su sistema operativo.</p>
 
                     
                     </section>
@@ -232,10 +233,10 @@ Installing Pip..................................................................
         </div>
 
         
-        <a href="../index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        <a href="../intro_django/README.html" class="navigation navigation-prev " aria-label="Previous page: Introducción Django"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../intro_django/creando_proyecto_en_django.html" class="navigation navigation-next " aria-label="Next page: Creando Proyecto en Django"><i class="fa fa-angle-right"></i></a>
+        <a href="../intro_django/creando_una_aplicacion_en_django.html" class="navigation navigation-next " aria-label="Next page: Creando una Aplicación en Django"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
