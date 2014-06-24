@@ -93,3 +93,7 @@ build/Release
 node_modules
 
 # Users Environment Variables
+.lock-wscript
+
+# ignore virtual envs "venv"
+venv
