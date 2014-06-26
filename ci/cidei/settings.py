@@ -1,5 +1,5 @@
 """
-Django settings for lab2 project.
+Django settings for cidei project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q351awc-^^6!bxa&y@$ktt0esx!yz@ck&gn)y@^di98i0)(ipv'
+SECRET_KEY = 'wc)4(i6=k-r_b86ca=r5i731@4$1t+zj)t6c^enfodd=p1_r6h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'list',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -47,9 +48,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'lab2.urls'
+ROOT_URLCONF = 'cidei.urls'
 
-WSGI_APPLICATION = 'lab2.wsgi.application'
+WSGI_APPLICATION = 'cidei.wsgi.application'
 
 
 # Database

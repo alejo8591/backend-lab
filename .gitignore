@@ -96,4 +96,13 @@ node_modules
 .lock-wscript
 
 # ignore virtual envs "venv"
-venv
+#!! ERROR: virtual is undefined. Use list command to see defined gitignore types !!#
+
+### VirtualEnv ###
+# Virtualenv
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ss]cripts
