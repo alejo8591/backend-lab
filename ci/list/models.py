@@ -21,4 +21,8 @@ class Item(models.Model):
 	posted_on = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
-		return "%s - %s - %s - %s - %s" % (self.name, self.listing, self.category, self.department, self.description)
+		return "%s - %s - %s - %s" % (self.name, self.listing, self.category, self.department)
+
+class Picture(models.Model):
+	item = models.ForeignKey(Item)
+	url = models.CharField(max_length=255)

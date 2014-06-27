@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>{{ title }}</title>
+    </head>
+
+    <body>
+        <h1>Sitio de prueba para las listas y manejo de inquietudes CIDEI</h1>
+        Hola <strong>{{ title }}</strong><br />
+	
+    	<h2>Items</h2>   
+        <ul>{% for item in items %}
+        	<li><a href="{{ item.id }}/">{{ item.name|capfirst }}</a></li>
+        	{% endfor %}
+        </ul>
+    </body>
+
+</html>

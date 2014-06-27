@@ -1,0 +1,7 @@
+Django==1.6.5
+Pillow==2.4.0
+Pygments==1.6
+bpython==0.13
+django-autofixture==0.8.0
+python-placeholder==0.2
+wsgiref==0.1.2
