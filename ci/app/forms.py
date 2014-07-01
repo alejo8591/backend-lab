@@ -11,6 +11,7 @@ class DeleteCategory(forms.Form):
 class CategoryForm(forms.Form):
 	name = forms.CharField(max_length=255)
 	slug = forms.SlugField(max_length=255)
+	description = forms.CharField(widget=forms.Textarea)
 
 class ItemForm(forms.Form):
 	listing = forms.ChoiceField(choices=L_TYPES, initial='t')
