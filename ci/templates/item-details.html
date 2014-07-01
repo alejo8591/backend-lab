@@ -6,6 +6,7 @@
 	<body>
 		<h1>{{ title }}</h1>
 		<a href="{% url 'edit-item' item.id %}">Editar item</a>
+		<a href="{% url 'delete-item' item.id %}">Eliminar item</a>
 		<ul>
 			<li>Nombre: {{ item.name }}</li>
 			<li>Categoria: {{ item.category.name }}</li>

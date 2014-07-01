@@ -2,7 +2,7 @@
 from django.shortcuts import render_to_response, get_object_or_404, HttpResponseRedirect
 from django.template import Context, RequestContext
 from app.models import Item, Category, Picture
-from app.forms import CategoryForm, ItemForm
+from app.forms import CategoryForm, ItemForm, DeleteCategory, DeleteItem
 from django.http import HttpResponse
 import json
 from django.core.serializers import serialize
@@ -56,6 +56,19 @@ def edit_category(request, slug):
 		form = CategoryForm(initial=category_data)
 	context = Context({'title' : 'Editar la categoria', 'form' : form})
 	return render_to_response('add-category.html', context, context_instance=RequestContext(request))
+
+def delete_category(request, slug):
+	item = get_object_or_404(Category, slug=slug)
+	if request.method == "POST":
+		form = DeleteCategory(request.POST)
+		if form.is_valid():
+			item.delete()
+			return HttpResponseRedirect('/categories/')
+	else:
+		form = DeleteCategory()
+		context = Context({'title' : 'Borrar categoria', 'form' : form})
+		return render_to_response('add-category.html', context, context_instance=RequestContext(request))
+
 
 def items(request):
 	items = Item.objects.all()
@@ -146,3 +159,14 @@ def ajax_item(request, item_id):
 	else:
 		return HttpResponse(json.dumps({'test': 'error'}), content_type='application/json')
 
+def delete_item(request, item_id):
+	item = get_object_or_404(Item, id=item_id)
+	if request.method == "POST":
+		form = DeleteItem(request.POST)
+		if form.is_valid():
+			item.delete()
+			return HttpResponseRedirect('/items/')
+	else:
+		form = DeleteItem()
+		context = Context({'title' : 'Borrar item', 'form' : form})
+		return render_to_response('add-item.html', context, context_instance=RequestContext(request))

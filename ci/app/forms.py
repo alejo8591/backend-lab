@@ -2,6 +2,12 @@ from django import forms
 
 from app.models import L_TYPES, Category, Item
 
+class DeleteItem(forms.Form):
+	delete = forms.BooleanField(label='Seleccione para Elimiar')
+
+class DeleteCategory(forms.Form): 
+	delete = forms.BooleanField(label='Seleccione para Elimiar')
+
 class CategoryForm(forms.Form):
 	name = forms.CharField(max_length=255)
 	slug = forms.SlugField(max_length=255)
