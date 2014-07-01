@@ -21,4 +21,5 @@ urlpatterns = patterns('',
     url(r'^items/(?P<item_id>\d+)/delete/$', 'app.views.delete_item', name='delete-item'),
     url(r'^items/ajax/$', 'app.views.ajax_items', name='ajax-items'),
     url(r'^items/ajax/(?P<item_id>\d+)/$', 'app.views.ajax_item', name='ajax-item'),
+    url(r'^register/$', 'accounts.views.register', name='register'), # ADD NEW PATTERN!
 )

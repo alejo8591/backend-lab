@@ -26,7 +26,6 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -39,7 +38,9 @@ INSTALLED_APPS = (
     'south',
     'autofixture',
     'app',
+    'accounts',
 )
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,7 +54,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'cidei.urls'
 
 WSGI_APPLICATION = 'cidei.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -78,7 +78,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
@@ -94,3 +93,6 @@ TEMPLATE_DIRS = (
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+AUTH_USER_MODEL = 'accounts.UserProfile'
