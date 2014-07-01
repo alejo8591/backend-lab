@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+	</head>
+	<body>
+		<h1>{{ title }}</h1>
+		<ul>
+		{% for category in categories %}
+			<li><a href="{% url 'category' category.slug %}">{{ category.name|capfirst }}</a></li>
+		{% endfor %}
+		</ul><br>
+		<a href="{% url 'index' %}">Volver al inicio</a>
+	</body>
+</html>

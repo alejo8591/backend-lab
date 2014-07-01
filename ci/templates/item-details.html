@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+	</head>
+	<body>
+		<h1>{{ title }}</h1>
+		<a href="{% url 'edit-item' item.id %}">Editar item</a>
+		<ul>
+			<li>Nombre: {{ item.name }}</li>
+			<li>Categoria: {{ item.category.name }}</li>
+			<li>Listado: {{ item.get_listing_display }}</li>
+			<li>Departamento: {{ item.department }}</li>
+			<li>Creado: {{ item.posted_on|date }}</li>
+		</ul>
+		<h2>Descripción</h2>
+		<p>{{ item.description|linebreaksbr }}</p>
+		{% if count_pictures == 0 %}
+			<h2>No tiene imagenes subidas</h2>
+		{% else %}
+			{% for picture in pictures %}
+			<h2>Tiene {{ count_pictures }} Imagenes subidas</h2>
+			<img src="{{ picture.url }}" alt="">
+			{% endfor %}
+		{% endif %}
+		<br>
+		<a href="{% url 'items' %}">Regresar a la lista de items</a>
+		<a href="{% url 'index' %}">Volver al inicio</a>
+	</body>
+</html>

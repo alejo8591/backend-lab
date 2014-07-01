@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wc)4(i6=k-r_b86ca=r5i731@4$1t+zj)t6c^enfodd=p1_r6h'
+SECRET_KEY = ')^hs9c58s$2^p4q&q@@)r*6ucou81l%8y2$3_euj!ky7frc)_a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'autofixture',
-    'list',
+    'app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,14 +60,14 @@ WSGI_APPLICATION = 'cidei.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'cidei.sqlite3'),
     }
 }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ES'
 
 TIME_ZONE = 'UTC'
 
@@ -83,8 +83,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-TEMPLATES_PATH = os.path.join(BASE_DIR, 'templates')
+TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 
 TEMPLATE_DIRS = (
-    TEMPLATES_PATH,
+    TEMPLATE_PATH,
+)
+
+# Static files for develop
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
 )

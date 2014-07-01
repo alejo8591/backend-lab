@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+	</head>
+	<body>
+		<h1>{{ title }}</h1>
+		<a href="{% url 'edit-category' category.slug %}">Editar categoria</a>
+		<ul>
+			<li>Nombre: {{ category.name }}</li>
+			<li>Categoria: {{ category.slug }}</li>
+		</ul><br />
+		<a href="{% url 'categories' %}">Regresar a la lista de Categorias</a>
+		<a href="{% url 'index' %}">Volver al inicio</a>
+	</body>
+</html>

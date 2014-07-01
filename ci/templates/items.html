@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+	</head>
+	<body>
+		<h1>{{ title }}</h1>
+		<ul>
+		{% for item in items %}
+			<li><a href="{% url 'item' item.id %}">{{ item.name|capfirst }}</a></li>
+		{% endfor %}
+		</ul><br>
+		<a href="{% url 'index' %}">Volver al inicio</a>
+	</body>
+</html>

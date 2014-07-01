@@ -1,19 +1,22 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
+	<head>
+		<title>{{ title }}</title>
+		<script src="{% static "js/jquery-1.11.1.min.js" %}"></script> <!-- JavaScript -->
+		<script src="{% static "js/jquery.cookie.js" %}"></script> <!-- JavaScript -->
+		<script src="{% static "js/lab5.js" %}"></script> <!-- JavaScript -->
 
-    <head>
-        <title>{{ title }}</title>
-    </head>
+	</head>
+	<body>
+		<h1>{{ title }}</h1>
+		<a href="{% url 'categories' %}">Categorias</a>
+		<a href="{% url 'items' %}">Items</a><br>
+		<h1>Crear elementos</h1>
+		<a href="{% url 'add-category' %}">Crear Categoria</a>
+		<a href="{% url 'add-item' %}">Adicionar item</a><br />
 
-    <body>
-        <h1>Sitio de prueba para las listas y manejo de inquietudes CIDEI</h1>
-        Hola <strong>{{ title }}</strong><br />
-	
-    	<h2>Items</h2>   
-        <ul>{% for item in items %}
-        	<li><a href="{{ item.id }}/">{{ item.name|capfirst }}</a></li>
-        	{% endfor %}
-        </ul>
-    </body>
-
+		<a href="#" id="test">test ajax in django</a>
+		<div id="result"></div>
+	</body>
 </html>
