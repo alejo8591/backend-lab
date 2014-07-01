@@ -136,7 +136,7 @@ def ajax_items(request):
 
 def ajax_item(request, item_id):
 	if request.is_ajax():
-		item = Item.objects.filter(item_id)
+		item = Item.objects.filter(id=item_id)
 		print item
 		item = serialize('json', item)
 		print item
