@@ -15,6 +15,6 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.username
 
-    REQUIRED_FIELDS = ['user', 'website', 'picture', 'skills']
+    REQUIRED_FIELDS = []
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
