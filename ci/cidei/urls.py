@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
 
 from django.contrib import admin
 admin.autodiscover()
@@ -22,4 +23,13 @@ urlpatterns = patterns('',
     url(r'^items/ajax/$', 'app.views.ajax_items', name='ajax-items'),
     url(r'^items/ajax/(?P<item_id>\d+)/$', 'app.views.ajax_item', name='ajax-item'),
     url(r'^register/$', 'accounts.views.register', name='register'), # ADD NEW PATTERN!
+    url(r'^login/$', 'accounts.views.user_login', name='user-login'), # ADD NEW PATTERN!
 )
+
+# UNDERNEATH your urlpatterns definition, add the following two lines:
+if settings.DEBUG:
+    urlpatterns += patterns(
+        'django.views.static',
+        (r'media/(?P<path>.*)',
+        'serve',
+        {'document_root': settings.MEDIA_ROOT}), )

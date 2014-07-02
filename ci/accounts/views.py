@@ -1,7 +1,10 @@
-# -*- coding:utf-8 -*-
-from django.template import Context, RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, HttpResponseRedirect
-
+from django.template import Context, RequestContext
+from django.contrib.auth import authenticate, login
+from django.http import StreamingHttpResponse
+import json
+from django.core.serializers import serialize
+from accounts.forms import UserForm, UserProfileForm
 
 def register(request):
     # Like before, get the request's context.
@@ -62,3 +65,36 @@ def register(request):
             'register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
             context)
+
+def user_login(request):
+    # Like before, obtain the context for the user's request.
+    context = RequestContext(request)
+
+    if request.method == "POST":
+        # Use Django's machinery to attempt to see if the username/password
+        # combination is valid - a User object is returned if it is.
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+
+        # If we have a User object, the details are correct.
+        # If None (Python's way of representing the absence of a value), no user
+        # with matching credentials was found.
+        if user:
+            if user.is_active:
+                # If we have a User object, the details are correct.
+                # If None (Python's way of representing the absence of a value), no user
+                # with matching credentials was found.
+                login(request, user)
+                return HttpResponseRedirect('/')
+            else:
+                # An inactive account was used - no logging in!
+                return StreamingHttpResponse("Your cidei account is disabled.")
+        else:
+            # Bad login details were provided. So we can't log the user in.
+            print "Invalid login details: {0}, {1}".format(username, password)
+    else:
+        # No context variables to pass to the template system, hence the
+        # blank dictionary object...
+        return render_to_response('login.html', {}, context)

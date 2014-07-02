@@ -4,6 +4,8 @@
 		<title>{{ title }}</title>
 	</head>
 	<body>
+		{{ user.username }}
+		
 		<h1>{{ title }}</h1>
 		<form action="." method="POST">
 		{% csrf_token %}

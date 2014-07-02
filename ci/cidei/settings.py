@@ -89,9 +89,23 @@ TEMPLATE_DIRS = (
     TEMPLATE_PATH,
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",)
 # Static files for develop
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
 AUTH_USER_MODEL = 'auth.User'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'

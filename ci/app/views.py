@@ -3,24 +3,29 @@ from django.shortcuts import render_to_response, get_object_or_404, HttpResponse
 from django.template import Context, RequestContext
 from app.models import Item, Category, Picture
 from app.forms import CategoryForm, ItemForm, DeleteCategory, DeleteItem
-from django.http import HttpResponse
+from django.http import StreamingHttpResponse
 import json
 from django.core.serializers import serialize
 
+from django.contrib.auth.decorators import login_required
+
 def index(request):
 	context = Context({'title' : 'Hola CIDEI'})
-	return render_to_response('index.html', context)
+	return render_to_response('index.html', context, context_instance=RequestContext(request))
 
+@login_required()
 def categories(request):
 	categories = Category.objects.all()
 	context = Context({'title' : 'Hola CIDEI', 'categories' : categories})
-	return render_to_response('categories.html', context)
+	return render_to_response('categories.html', context, context_instance=RequestContext(request))
 
+@login_required()
 def category(request, slug):
 	category = get_object_or_404(Category, slug=slug)
 	context = Context({'title' : 'Detalle categoria', 'category' : category})
-	return render_to_response('category-details.html', context)
+	return render_to_response('category-details.html', context, context_instance=RequestContext(request))
 
+@login_required()
 def add_category(request):
 	if request.method == "POST":
 		form = CategoryForm(request.POST)
@@ -38,6 +43,7 @@ def add_category(request):
 	context = Context({'title':'Creación de categorias', 'form': form})
 	return render_to_response('add-category.html', context, context_instance=RequestContext(request))
 
+@login_required()
 def edit_category(request, slug):
 	category = get_object_or_404(Category, slug=slug)
 	if request.method == "POST":
@@ -57,6 +63,7 @@ def edit_category(request, slug):
 	context = Context({'title' : 'Editar la categoria', 'form' : form})
 	return render_to_response('add-category.html', context, context_instance=RequestContext(request))
 
+@login_required()
 def delete_category(request, slug):
 	item = get_object_or_404(Category, slug=slug)
 	if request.method == "POST":
@@ -69,12 +76,13 @@ def delete_category(request, slug):
 		context = Context({'title' : 'Borrar categoria', 'form' : form})
 		return render_to_response('add-category.html', context, context_instance=RequestContext(request))
 
-
+@login_required()
 def items(request):
 	items = Item.objects.all()
 	context = Context({'title' : 'Hola CIDEI', 'items' : items})
 	return render_to_response('items.html', context)
 
+@login_required()
 def item(request, item_id):
 	item = get_object_or_404(Item, id=item_id)
 	pictures = Picture.objects.filter(item=item)
@@ -85,8 +93,9 @@ def item(request, item_id):
 		'pictures':pictures,
 		'count_pictures' : count_pictures
 	})
-	return render_to_response('item-details.html', context)
+	return render_to_response('item-details.html', context, context_instance=RequestContext(request))
 
+@login_required()
 def add_item(request):
 	if request.method == "POST":
 		form = ItemForm(request.POST)
@@ -108,6 +117,7 @@ def add_item(request):
 	context = Context({'title' : 'Adicionar item', 'form' : form})
 	return render_to_response('add-item.html', context, context_instance=RequestContext(request))
 
+@login_required()
 def edit_item(request, item_id):
 	item = get_object_or_404(Item, pk=item_id)
 	if request.method == "POST":
@@ -135,6 +145,7 @@ def edit_item(request, item_id):
 	context = Context({'title' : 'Editar el item', 'form' : form})
 	return render_to_response('add-item.html', context, context_instance=RequestContext(request))
 
+@login_required()
 def ajax_items(request):
 	if request.is_ajax():
 		items = Item.objects.all()
@@ -143,9 +154,9 @@ def ajax_items(request):
 		print items
 		items = json.dumps(items)
 		print items
-		return HttpResponse(items, content_type='application/json')
+		return StreamingHttpResponse(items, content_type='application/json')
 	else:
-		return HttpResponse(json.dumps({'test': 'error'}), content_type='application/json')
+		return StreamingHttpResponse(json.dumps({'test': 'error'}), content_type='application/json')
 
 def ajax_item(request, item_id):
 	if request.is_ajax():
@@ -155,10 +166,11 @@ def ajax_item(request, item_id):
 		print item
 		item = json.dumps(item)
 		print item
-		return HttpResponse(item, content_type='application/json')
+		return StreamingHttpResponse(item, content_type='application/json')
 	else:
-		return HttpResponse(json.dumps({'test': 'error'}), content_type='application/json')
+		return StreamingHttpResponse(json.dumps({'test': 'error'}), content_type='application/json')
 
+@login_required()
 def delete_item(request, item_id):
 	item = get_object_or_404(Item, id=item_id)
 	if request.method == "POST":
