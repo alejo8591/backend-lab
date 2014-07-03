@@ -15,15 +15,15 @@
 		{% endif %}
 		<hr />
 		{% if user.is_authenticated %}
-		<h2>{{ title }}</h2>
-		<a href="{% url 'categories' %}">Categorias</a>
-		<a href="{% url 'items' %}">Items</a><br>
-		<h1>Crear elementos</h1>
-		<a href="{% url 'add-category' %}">Crear Categoria</a>
-		<a href="{% url 'add-item' %}">Adicionar item</a><br />
+			<h2>{{ title }}</h2>
+			<a href="{% url 'categories' %}">Categorias</a>
+			<a href="{% url 'items' %}">Items</a><br>
+			<h1>Crear elementos</h1>
+			<a href="{% url 'add-category' %}">Crear Categoria</a>
+			<a href="{% url 'add-item' %}">Adicionar item</a><br />
 		{% else %}
-		<a href="{% url 'register' %}">Registrarse</a><br />
-		<a href="{% url 'user-login' %}">Ingresar</a><br />
+			<a href="{% url 'register' %}">Registrarse</a><br />
+			<a href="{% url 'user-login' %}">Ingresar</a><br />
 		{% endif %}
 	</body>
 </html>

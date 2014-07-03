@@ -1,9 +1,11 @@
 Django==1.6.5
+PIL==1.1.7
 Pillow==2.4.0
 Pygments==1.6
 South==1.0
 bpython==0.13
 django-autofixture==0.8.0
+djangorestframework==2.3.14
 python-placeholder==0.2
 pytz==2014.4
 wsgiref==0.1.2
