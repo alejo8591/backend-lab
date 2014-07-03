@@ -9,6 +9,10 @@ from django.core.serializers import serialize
 
 from django.contrib.auth.decorators import login_required
 
+from app.serializers import CategorySerializer
+
+from rest_framework import viewsets
+
 def index(request):
 	context = Context({'title' : 'Hola CIDEI'})
 	return render_to_response('index.html', context, context_instance=RequestContext(request))
@@ -182,3 +186,7 @@ def delete_item(request, item_id):
 		form = DeleteItem()
 		context = Context({'title' : 'Borrar item', 'form' : form})
 		return render_to_response('add-item.html', context, context_instance=RequestContext(request))
+
+class CategoryViewSet(viewsets.ModelViewSet):
+	queryset = Category.objects.all()
+	serializer_class = CategorySerializer

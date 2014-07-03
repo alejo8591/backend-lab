@@ -4,10 +4,25 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
+from rest_framework import routers
+
+from app.views import CategoryViewSet
+
+from accounts.views import UserViewSet, UserProfileViewSet
+
+router = routers.DefaultRouter()
+router.register(r'categories', CategoryViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'profile', UserProfileViewSet)
+
+
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'cidei.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+    url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'app.views.index', name="index"),
     url(r'^categories/$', 'app.views.categories', name="categories"),

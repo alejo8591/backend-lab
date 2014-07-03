@@ -6,6 +6,14 @@ import json
 from django.core.serializers import serialize
 from accounts.forms import UserForm, UserProfileForm
 
+from django.contrib.auth.models import User
+
+from accounts.models import UserProfile
+
+from accounts.serializers import UserProfileSerializer, UserSerializer
+
+from rest_framework import viewsets
+
 def register(request):
     # Like before, get the request's context.
     context = RequestContext(request)
@@ -98,3 +106,12 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render_to_response('login.html', {}, context)
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+
