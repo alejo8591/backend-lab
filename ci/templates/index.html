@@ -24,6 +24,11 @@
 		{% else %}
 			<a href="{% url 'register' %}">Registrarse</a><br />
 			<a href="{% url 'user-login' %}">Ingresar</a><br />
-		{% endif %}
+		{% endif %} <br/ >
+		<ul>
+			{% for sentence in sentences %}
+				<li>{{ sentence }}</li>
+			{% endfor %}
+		</ul>
 	</body>
 </html>

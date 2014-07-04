@@ -99,7 +99,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
-    "django.contrib.messages.context_processors.messages",)
+    "django.contrib.messages.context_processors.messages",
+    "accounts.context_processors.test_context_processor",)
 # Static files for develop
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
