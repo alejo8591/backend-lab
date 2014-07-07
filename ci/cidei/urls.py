@@ -6,12 +6,13 @@ admin.autodiscover()
 
 from rest_framework import routers
 
-from app.views import CategoryViewSet
+from app.views import CategoryViewSet, ItemViewSet
 
 from accounts.views import UserViewSet, UserProfileViewSet
 
 router = routers.DefaultRouter()
 router.register(r'categories', CategoryViewSet)
+router.register(r'items', ItemViewSet)
 router.register(r'users', UserViewSet)
 router.register(r'profile', UserProfileViewSet)
 

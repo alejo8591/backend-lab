@@ -9,7 +9,7 @@ from django.core.serializers import serialize
 
 from django.contrib.auth.decorators import login_required
 
-from app.serializers import CategorySerializer
+from app.serializers import CategorySerializer, ItemSerializer
 
 from rest_framework import viewsets
 
@@ -233,3 +233,7 @@ def delete_item(request, item_id):
 class CategoryViewSet(viewsets.ModelViewSet):
 	queryset = Category.objects.all()
 	serializer_class = CategorySerializer
+
+class ItemViewSet(viewsets.ModelViewSet):
+	queryset = Item.objects.all()
+	serializer_class = ItemSerializer

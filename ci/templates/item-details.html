@@ -4,6 +4,7 @@
 		<title>{{ title }}</title>
 	</head>
 	<body>
+		{{current_view}}
 		<h1>{{ title }}</h1>
 		<a href="{% url 'edit-item' item.id %}">Editar item</a>
 		<a href="{% url 'delete-item' item.id %}">Eliminar item</a>
