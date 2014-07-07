@@ -14,6 +14,10 @@ from accounts.serializers import UserProfileSerializer, UserSerializer
 
 from rest_framework import viewsets
 
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 def register(request):
     # Like before, get the request's context.
     context = RequestContext(request)
@@ -106,7 +110,7 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render_to_response('login.html', {}, context)
-
+"""
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -114,4 +118,11 @@ class UserViewSet(viewsets.ModelViewSet):
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
+"""
 
+@api_view(['GET'])
+def users_list(request):
+    if request.method == 'GET':
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data, context={'request': request})
