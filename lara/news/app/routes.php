@@ -41,3 +41,76 @@ Route::get('person/optional/{name?}', function($name = null)
 		return "Hello YOPO";
 	}
 });
+
+Route::get('professor/unvalidated/{name}/{age}', function($name, $age)
+{
+	return "El nombre del profesor es: " . $name . " y su edad es de: " . $age;
+});
+
+/* Validated fields with `where()` method */
+Route::get('professor/validated/{name}/{age}', function($name, $age)
+{
+	return "El nombre del profesor es: " . $name . " y su edad es de: " . $age;
+})->where(array('name'=>'[a-zA-Z]+', 'age'=>'[0-9]+'));
+
+/*
+Estas validaciones se replican para cada ruta que siga hacia abajo
+*/
+
+Route::pattern('name','[a-zA-Z]+');
+Route::pattern('age','[0-9]+');
+
+Route::get('professor/validated/pattern/{name}/{age}', function($name, $age)
+{
+	return "El nombre del profesor es: " . $name . " y su edad es de: " . $age;
+});
+
+/*
+Rutas especificas para utilizar con el filtro `session`
+*/
+
+Route::get('session/create', function()
+{
+	Session::put('name','Alejandro');
+	return "Se Crea la sesión correctamente";
+});
+
+Route::get('session/delete', function()
+{
+	Session::forget('name');
+	return "Se Elimina la sesión correctamente";
+});
+
+Route::get('login', function()
+{
+	return "Ingrese al sistema";
+});
+
+/* Primera forma de utilizar el filtro `session` */
+Route::get('users/filter/one', array('before'=>'session', function()
+{
+	return "Hello Filtro Uno!";
+}));
+
+/* Segunda forma de utilizar el filtro `session` */
+Route::get('users/filter/two', function()
+{
+	return "Hello Filtro Dos!";
+})->before('session');
+
+/* Tercera forma de filtros utilizando el metodo `group()` */
+Route::group(array('before'=>'session'), function()
+{
+
+	Route::get('users/filter/three', array('before'=>'session', function()
+	{
+		return "Hello Filtro Tres!";
+	}));
+
+	/* Segunda forma de utilizar el filtro `session` */
+	Route::get('users/filter/four', function()
+	{
+		return "Hello Filtro Cuatro!";
+	})->before('session');
+
+});

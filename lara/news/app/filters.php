@@ -88,3 +88,16 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/* Creación de un filtro llamado `session` */
+Route::filter('session', function()
+{
+	if(!Session::has('name'))
+	{
+		return Redirect::to('/login');
+
+	} else
+	{
+		return Redirect::to('/person/optional');
+	}
+});
