@@ -1,0 +1,1 @@
+/Users/alejo8591/Documents/backend-lab/lara/news/app/views/news/edit.blade.php

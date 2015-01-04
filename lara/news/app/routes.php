@@ -19,11 +19,20 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
+Route::resource('news', 'NewsController');
+
+Route::post('news/create', function()
+{
+	return Input::get('_token');
+});
+
 Route::get('users', function()
 {
 	return "Hello Dex!";
 });
 
+
+/*
 Route::get('person/always/{name}', function($name)
 {
 	return "Hello " . $name;
@@ -47,7 +56,7 @@ Route::get('professor/unvalidated/{name}/{age}', function($name, $age)
 	return "El nombre del profesor es: " . $name . " y su edad es de: " . $age;
 });
 
-/* Validated fields with `where()` method */
+/* Validated fields with `where()` method
 Route::get('professor/validated/{name}/{age}', function($name, $age)
 {
 	return "El nombre del profesor es: " . $name . " y su edad es de: " . $age;
@@ -67,7 +76,7 @@ Route::get('professor/validated/pattern/{name}/{age}', function($name, $age)
 
 /*
 Rutas especificas para utilizar con el filtro `session`
-*/
+
 
 Route::get('session/create', function()
 {
@@ -86,19 +95,19 @@ Route::get('login', function()
 	return "Ingrese al sistema";
 });
 
-/* Primera forma de utilizar el filtro `session` */
+/* Primera forma de utilizar el filtro `session`
 Route::get('users/filter/one', array('before'=>'session', function()
 {
 	return "Hello Filtro Uno!";
 }));
 
-/* Segunda forma de utilizar el filtro `session` */
+/* Segunda forma de utilizar el filtro `session`
 Route::get('users/filter/two', function()
 {
 	return "Hello Filtro Dos!";
 })->before('session');
 
-/* Tercera forma de filtros utilizando el metodo `group()` */
+/* Tercera forma de filtros utilizando el metodo `group()`
 Route::group(array('before'=>'session'), function()
 {
 
@@ -107,10 +116,11 @@ Route::group(array('before'=>'session'), function()
 		return "Hello Filtro Tres!";
 	}));
 
-	/* Segunda forma de utilizar el filtro `session` */
+	/* Segunda forma de utilizar el filtro `session`
 	Route::get('users/filter/four', function()
 	{
 		return "Hello Filtro Cuatro!";
 	})->before('session');
 
 });
+*/
