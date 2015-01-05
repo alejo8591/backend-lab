@@ -16,21 +16,21 @@ http://stackoverflow.com/questions/13514990/laravel-4-all-routes-except-home-res
 */
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('home_four');
 });
 
 Route::resource('news', 'NewsController');
 
 Route::post('news/create', function()
 {
-	return Input::get('_token');
-});
+})->before('csrf');
 
-Route::get('users', function()
+/*Route::get('users', function()
 {
 	return "Hello Dex!";
-});
+});*/
 
+Route::controller('users', 'UserController');
 
 /*
 Route::get('person/always/{name}', function($name)
@@ -64,7 +64,7 @@ Route::get('professor/validated/{name}/{age}', function($name, $age)
 
 /*
 Estas validaciones se replican para cada ruta que siga hacia abajo
-*/
+
 
 Route::pattern('name','[a-zA-Z]+');
 Route::pattern('age','[0-9]+');
@@ -72,7 +72,7 @@ Route::pattern('age','[0-9]+');
 Route::get('professor/validated/pattern/{name}/{age}', function($name, $age)
 {
 	return "El nombre del profesor es: " . $name . " y su edad es de: " . $age;
-});
+});*/
 
 /*
 Rutas especificas para utilizar con el filtro `session`

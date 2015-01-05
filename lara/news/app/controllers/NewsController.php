@@ -34,7 +34,23 @@ class NewsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// MVC
+		$news = new News;
+
+		$news->title = Input::get('title');
+		$news->content = Input::get('content');
+		$news->active = Input::get('active');
+
+		$news->save();
+
+		// Normal
+		/*DB::table('news')->insert(array(
+			'title' => Input::get('title'),
+			'content' => Input::get('content'),
+			'active' => Input::get('active'),
+		));*/
+
+		return Redirect::to('news')->with('status', 'save');
 	}
 
 	/**
@@ -84,7 +100,15 @@ class NewsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$news = News::find($id);
+
+		$news->delete();
+
+		//return "La Noticia fue Eliminada";
+		// Other 	`whith` method
+		//return Redirect::to('news')->withDelete('ok');
+		return Redirect::to('news')->with('status','delete');
+
 	}
 
 }
