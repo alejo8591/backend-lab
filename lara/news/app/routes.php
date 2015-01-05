@@ -16,7 +16,7 @@ http://stackoverflow.com/questions/13514990/laravel-4-all-routes-except-home-res
 */
 Route::get('/', function()
 {
-	return View::make('home_four');
+	return View::make('login.login');
 });
 
 Route::resource('news', 'NewsController');
