@@ -1,3 +1,5 @@
+@extends('layouts.base')
+
 {{ HTML::script('js/jquery-1.11.2.min.js') }}
 {{ HTML::script('js/restfulizer.js') }}
 
@@ -10,13 +12,12 @@
 <h3>La noticia se Elimino con exito</h3>
 @endif
 
-
 @foreach($news as $item)
   <li>
     <a href="{{ route('news.show', $item->id)}}">
       {{$item->title}}
     </a> -
-    <a href="{{ route('news.destroy', $item->id)}}" data-method="delete" rel="nofollow" data-confirm="Esta Seguro de Eliminar el elemento">
+    <a href="{{ route('news.destroy', $item->id)}}" data-method="delete" rel="nofollow" data-confirm="Esta Seguro de Eliminar el elemento" class="btn btn-lg btn-primary">
       Eliminar
     </a>
     <!-- Basic form

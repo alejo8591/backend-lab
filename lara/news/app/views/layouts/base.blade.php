@@ -7,8 +7,12 @@
       Test Laravel
      @show
    </title>
+   <!-- Bootstrap core CSS -->
+   <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+   {{ HTML::style('css/bootstrap.min.css') }}
    @section('head')
-   <link rel="stylesheet" href="/css/master.css" media="screen" title="no title" charset="utf-8">
+   <!-- Custom styles for this template -->
+   {{ HTML::style('css/styles.css') }}
    @show
  </head>
  <body>

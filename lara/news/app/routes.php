@@ -25,6 +25,11 @@ Route::post('news/create', function()
 {
 })->before('csrf');
 
+Route::post('validationlogin', function()
+{
+	return Input::get('_token');
+})->before('csrf');
+
 /*Route::get('users', function()
 {
 	return "Hello Dex!";

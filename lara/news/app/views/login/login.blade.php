@@ -8,7 +8,7 @@
   <meta name="author" content="">
   <link rel="icon" href="favicon.ico">
 
-  <title>Signin Template for Bootstrap</title>
+  <title>Template</title>
 
   <!-- Bootstrap core CSS -->
   <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
@@ -46,14 +46,14 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form> -->
 
-    {{ Form::open(array('url'=>'validationlogin', 'class'=>'form-signin')) }}
+    {{ Form::open(array('url'=>'index.php/validationlogin', 'class'=>'form-signin')) }}
 
       {{ Form::email('email', null, array('placeholder'=>'Su Correo', 'class'=>'form-control', 'id'=>'input-email', 'autofocus'=>'true', 'required'=>'true')) }}
 
       {{ Form::password('password', array('placeholder'=>'Password', 'class'=>'form-control', 'id'=>'input-password', 'required'=>'true')) }}
 
       {{ Form::label('¡Recuerdame!') }}
-      
+
       {{ Form::checkbox('¡Recuerdame!', 'remember-me', null, array('class'=>'checkbox')) }}
 
       {{ Form::submit('¡Ingresar!', array('class'=>'btn btn-lg btn-primary btn-block')) }}
