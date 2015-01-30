@@ -3,6 +3,9 @@ from django.contrib import admin
 from django.conf.urls.static import static
 # At the top of your urls.py file, add the following line:
 from django.conf import settings
+import autofixture
+
+autofixture.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
