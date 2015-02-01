@@ -5,7 +5,7 @@ import random
 
 nouns = ("Hardware", "Software", "Test-Software", "Test-Hardware", "Apps", "BigData",)
 
-class CategoryFixture(AutoFixture):
+class CategoryAutoFixture(AutoFixture):
 	field_values = {
 		'name' : generators.StaticGenerator(random.choice(nouns)),
 	}
