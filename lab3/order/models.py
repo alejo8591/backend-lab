@@ -64,8 +64,8 @@ class Order(models.Model):
 
     order_amount = models.DecimalField(max_digits=64,
                                     decimal_places = 2,
-                                    verbose_name='Cantidad de Productos',
-                                    help_text='Ingrese la Cantidad del Producto.')
+                                    verbose_name='Cantidad',
+                                    help_text='Cantidad del Producto.')
 
     order_date = models.DateField(auto_now=True)
 
