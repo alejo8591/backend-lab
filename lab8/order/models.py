@@ -65,7 +65,7 @@ class Product(models.Model):
         #self.date_updated_product = datetime.datetime.now()
         self.date_updated_product = now_utc.astimezone(pytz.timezone('America/Bogota'))
 
-        super(Customer, self).save(*args, **kwargs)
+        super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
         return "{0} - {1}".format(str(self.id), str(self.product_name))
@@ -92,10 +92,11 @@ class Stock(models.Model):
         #self.date_updated_stock = datetime.datetime.now()
         self.date_updated_stock = now_utc.astimezone(pytz.timezone('America/Bogota'))
 
-        super(Customer, self).save(*args, **kwargs)
+        super(Stock, self).save(*args, **kwargs)
 
 
 class Order(models.Model):
+
     order_customer_id = models.ForeignKey('Customer',
                                     verbose_name='Cliente',
                                     help_text='Seleccione el Nombre del Cliente.')
@@ -121,7 +122,7 @@ class Order(models.Model):
         #self.date_updated_order = datetime.datetime.now()
         self.date_updated_order = now_utc.astimezone(pytz.timezone('America/Bogota'))
 
-        super(Customer, self).save(*args, **kwargs)
+        super(Order, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.order_customer_id)

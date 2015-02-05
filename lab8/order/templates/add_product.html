@@ -7,7 +7,14 @@
     <body>
         <h1>Agregar Producto</h1>
 
+        {% if update and product and stock %}
+        <form id="product_form" method="post" action="{% url 'edit_product' product.id stock.id %}">
+
+        {% else %}
+
         <form id="product_form" method="post" action="{% url 'add_product' %}">
+
+        {% endif %}
 
             {% csrf_token %}
             {% for hidden in product_form.hidden_fields %}

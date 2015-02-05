@@ -8,6 +8,7 @@
   <body>
     {% if customer %}
       <h3>{{ title }}</h3>
+      <a href="{% url 'edit_customer' customer.id %}">Editar Información Cliente</a>
         <ul>
           <li>Nombre del Cliente: {{ customer.customer_name }}</li>
           <li>Dirección del Cliente: {{ customer.customer_address }}</li>
