@@ -136,5 +136,26 @@ def add_order(request):
 
     else:
         context = {'form':OrderForm()}
-        
+
     return render(request, 'add_order.html',context)
+
+
+def list_customers(request):
+
+    context = {}
+
+    customers = Customer.objects.all()
+
+    context.update({'customers':customers, 'title': 'Listado de Clientes'})
+
+    return render(request, 'list_customers.html', context)
+
+def list_products(request):
+
+    context = {}
+
+    products = Product.objects.all()
+
+    context.update({'products':products, 'title': 'Listado de Productos'})
+
+    return render(request, 'list_products.html', context)

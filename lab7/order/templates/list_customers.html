@@ -6,22 +6,21 @@
     <title>{{ title }}</title>
   </head>
   <body>
-    {% if orders %}
+    {% if customers %}
       <h1>{{ title }}</h1>
       <ul>
-        {% for order in orders %}
-          <li>{{ order.order_customer_id }} tiene una orden con #{{ order.id }} <a href="{% url 'order' order.id %}">Ver Detalle</a></li>
+        {% for customer in customers %}
+          <li>{{ customer.customer_name }} <a href="{% url 'customer' customer.id %}">Ver Detalles</a></li>
         {% endfor %}
       </ul>
     {% else%}
-      <h3>Por el momento no hay Ordenes</h3>
+      <h3>Por el momento no hay Clientes Registrados</h3>
     {% endif %}
     <h2>Menú de Opciones</h2>
     <a href="{% url 'add_customer' %}">Crear Cliente</a>
     <a href="{% url 'add_product' %}">Crear Producto</a>
     <a href="{% url 'add_order' %}">Crear Orden</a><br />
     <h2>Menú de Listados</h2>
-    <a href="{% url 'list_customers' %}">Lista de Clientes</a>
     <a href="{% url 'list_products' %}">Lista de Productos</a>
     <a href="{% url 'index' %}">Lista de Ordenes</a>
   </body>
