@@ -99,6 +99,6 @@ STATICFILE_DIRS = (
 """
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'order', 'templates/'),
-    os.path.join(BASE_DIR, 'app', 'templates/'),
+    os.path.join(BASE_DIR, 'order', 'templates'),
+    os.path.join(BASE_DIR, 'app', 'templates'),
 )

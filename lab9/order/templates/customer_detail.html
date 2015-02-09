@@ -15,7 +15,7 @@
           <li>Teléfono del Cliente: {{ customer.customer_phone }}</li>
           <li>Ultima Actualización del Cliente: {{ customer.date_updated_customer }}</li>
         </ul>
-      <a href="{% url 'index' %}">Inicio</a>
+      <a href="{% url 'order_index' %}">Inicio</a>
     {% endif %}
 
     {% if error %}

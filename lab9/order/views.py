@@ -182,7 +182,7 @@ def edit_customer(request, customer_id):
 
                 customer.save()
 
-                return HttpResponseRedirect('/customer/detail/%s/' % customer.id)
+                return HttpResponseRedirect('/order/customer/detail/%s/' % customer.id)
 
         else:
             customer_data = {
@@ -236,7 +236,7 @@ def edit_product(request, product_id, stock_id):
                     stock_update.save()
                 """
 
-                return HttpResponseRedirect('/product/detail/%s/' % product.id)
+                return HttpResponseRedirect('/order/product/detail/%s/' % product.id)
 
         else:
             stock_data = {
