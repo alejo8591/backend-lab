@@ -84,6 +84,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# http://stackoverflow.com/questions/3092865/django-view-load-template-from-calling-apps-dir-first
 STATICFILE_DIRS = (
     os.path.join(BASE_DIR, 'order', 'templates'),
+    os.path.join(BASE_DIR, 'app', 'templates'),
 )

@@ -10,7 +10,7 @@ def index(request):
 
     context.update({'orders':orders, 'title': 'Listado de Ordenes'})
 
-    return render(request, 'index.html', context)
+    return render(request, 'order/index.html', context)
 
 
 def order(request, order_id):
@@ -25,7 +25,7 @@ def order(request, order_id):
 
         context.update({'error': True})
 
-    return render(request, 'detail.html', context)
+    return render(request, 'order/detail.html', context)
 
 
 def customer(request, customer_id):
@@ -40,7 +40,7 @@ def customer(request, customer_id):
     except Customer.DoesNotExist:
         context.update({'error': True})
 
-    return render(request, 'customer_detail.html', context)
+    return render(request, 'order/customer_detail.html', context)
 
 
 def product(request, product_id):
@@ -63,7 +63,7 @@ def product(request, product_id):
     except Product.DoesNotExist:
         context.update({'error': True})
 
-    return render(request, 'product_detail.html', context)
+    return render(request, 'order/product_detail.html', context)
 
 def add_customer(request):
 
@@ -91,7 +91,7 @@ def add_customer(request):
 
     else:
         context = {'form': CustomerForm()}
-    return render(request, 'add_customer.html',context)
+    return render(request, 'order/add_customer.html',context)
 
 
 def add_product(request):
@@ -119,7 +119,7 @@ def add_product(request):
     else:
         context = {'product_form': ProductForm(prefix='product'), 'stock_form': StockForm(prefix='stock')}
 
-    return render(request, 'add_product.html',context)
+    return render(request, 'order/add_product.html',context)
 
 
 def add_order(request):
@@ -138,7 +138,7 @@ def add_order(request):
     else:
         context = {'form':OrderForm()}
 
-    return render(request, 'add_order.html',context)
+    return render(request, 'order/add_order.html',context)
 
 
 def list_customers(request):
@@ -149,7 +149,7 @@ def list_customers(request):
 
     context.update({'customers':customers, 'title': 'Listado de Clientes'})
 
-    return render(request, 'list_customers.html', context)
+    return render(request, 'order/list_customers.html', context)
 
 
 def list_products(request):
@@ -160,7 +160,7 @@ def list_products(request):
 
     context.update({'products':products, 'title': 'Listado de Productos'})
 
-    return render(request, 'list_products.html', context)
+    return render(request, 'order/list_products.html', context)
 
 
 def edit_customer(request, customer_id):
@@ -198,7 +198,7 @@ def edit_customer(request, customer_id):
 
     context.update({'title': 'Editar Cliente', 'form': form, 'update': True, 'customer': customer})
 
-    return render(request, 'add_customer.html', context)
+    return render(request, 'order/add_customer.html', context)
 
 
 def edit_product(request, product_id, stock_id):
@@ -264,4 +264,4 @@ def edit_product(request, product_id, stock_id):
         'product': product,
         'stock': stock})
 
-    return render(request, 'add_product.html', context)
+    return render(request, 'order/add_product.html', context)
