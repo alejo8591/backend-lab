@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from order import views
 
 urlpatterns = patterns('',
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.index, name='order_index'),
     url(r'^customer/list/$', views.list_customers, name='list_customers'),
     url(r'^product/list/$', views.list_products, name='list_products'),
     url(r'^detail/(?P<order_id>\d+)/$', views.order, name='order'),

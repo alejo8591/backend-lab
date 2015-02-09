@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -30,6 +29,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'order',
+    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'autofixture',
-    'order'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -85,7 +85,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # http://stackoverflow.com/questions/3092865/django-view-load-template-from-calling-apps-dir-first
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
+)
+
+"""
 STATICFILE_DIRS = (
     os.path.join(BASE_DIR, 'order', 'templates'),
     os.path.join(BASE_DIR, 'app', 'templates'),
+)
+"""
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'order', 'templates/'),
+    os.path.join(BASE_DIR, 'app', 'templates/'),
 )

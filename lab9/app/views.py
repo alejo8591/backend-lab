@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response, RequestContext
 
 def index(request):
-    return render(request, 'app/index.html')
+    return render_to_response('app_index.html', {}, context_instance=RequestContext(request))

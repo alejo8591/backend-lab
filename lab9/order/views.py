@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, render_to_response, RequestContext
 from order.models import Order, Customer, Product, Stock
 from order.forms import CustomerForm, ProductForm, StockForm, OrderForm
 
@@ -10,7 +10,8 @@ def index(request):
 
     context.update({'orders':orders, 'title': 'Listado de Ordenes'})
 
-    return render(request, 'order/index.html', context)
+    #return render(request, 'order/index.html', context)
+    return render_to_response('order_index.html', context, context_instance=RequestContext(request))
 
 
 def order(request, order_id):
@@ -25,7 +26,7 @@ def order(request, order_id):
 
         context.update({'error': True})
 
-    return render(request, 'order/detail.html', context)
+    return render(request, 'detail.html', context)
 
 
 def customer(request, customer_id):
@@ -40,7 +41,7 @@ def customer(request, customer_id):
     except Customer.DoesNotExist:
         context.update({'error': True})
 
-    return render(request, 'order/customer_detail.html', context)
+    return render(request, 'customer_detail.html', context)
 
 
 def product(request, product_id):
@@ -63,7 +64,7 @@ def product(request, product_id):
     except Product.DoesNotExist:
         context.update({'error': True})
 
-    return render(request, 'order/product_detail.html', context)
+    return render(request, 'product_detail.html', context)
 
 def add_customer(request):
 
@@ -91,7 +92,7 @@ def add_customer(request):
 
     else:
         context = {'form': CustomerForm()}
-    return render(request, 'order/add_customer.html',context)
+    return render(request, 'add_customer.html',context)
 
 
 def add_product(request):
@@ -119,7 +120,7 @@ def add_product(request):
     else:
         context = {'product_form': ProductForm(prefix='product'), 'stock_form': StockForm(prefix='stock')}
 
-    return render(request, 'order/add_product.html',context)
+    return render(request, 'add_product.html',context)
 
 
 def add_order(request):
@@ -138,7 +139,7 @@ def add_order(request):
     else:
         context = {'form':OrderForm()}
 
-    return render(request, 'order/add_order.html',context)
+    return render(request, 'add_order.html',context)
 
 
 def list_customers(request):
@@ -149,7 +150,7 @@ def list_customers(request):
 
     context.update({'customers':customers, 'title': 'Listado de Clientes'})
 
-    return render(request, 'order/list_customers.html', context)
+    return render(request, 'list_customers.html', context)
 
 
 def list_products(request):
@@ -160,7 +161,7 @@ def list_products(request):
 
     context.update({'products':products, 'title': 'Listado de Productos'})
 
-    return render(request, 'order/list_products.html', context)
+    return render(request, 'list_products.html', context)
 
 
 def edit_customer(request, customer_id):
@@ -181,7 +182,7 @@ def edit_customer(request, customer_id):
 
                 customer.save()
 
-                return HttpResponseRedirect('/order/customer/detail/%s/' % customer.id)
+                return HttpResponseRedirect('/customer/detail/%s/' % customer.id)
 
         else:
             customer_data = {
@@ -198,7 +199,7 @@ def edit_customer(request, customer_id):
 
     context.update({'title': 'Editar Cliente', 'form': form, 'update': True, 'customer': customer})
 
-    return render(request, 'order/add_customer.html', context)
+    return render(request, 'add_customer.html', context)
 
 
 def edit_product(request, product_id, stock_id):
@@ -235,7 +236,7 @@ def edit_product(request, product_id, stock_id):
                     stock_update.save()
                 """
 
-                return HttpResponseRedirect('/order/product/detail/%s/' % product.id)
+                return HttpResponseRedirect('/product/detail/%s/' % product.id)
 
         else:
             stock_data = {
@@ -264,4 +265,4 @@ def edit_product(request, product_id, stock_id):
         'product': product,
         'stock': stock})
 
-    return render(request, 'order/add_product.html', context)
+    return render(request, 'add_product.html', context)
