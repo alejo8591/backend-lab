@@ -29,8 +29,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'order',
-    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'autofixture',
+    'account',
+    'order',
+    'app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -84,6 +85,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+"""
+    STATICFILE_DIRS = (
+        os.path.join(BASE_DIR, 'order', 'templates'),
+        os.path.join(BASE_DIR, 'app', 'templates'),
+    )
+"""
+
 # http://stackoverflow.com/questions/3092865/django-view-load-template-from-calling-apps-dir-first
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -91,14 +99,17 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.eggs.Loader',
 )
 
-"""
-STATICFILE_DIRS = (
-    os.path.join(BASE_DIR, 'order', 'templates'),
-    os.path.join(BASE_DIR, 'app', 'templates'),
-)
-"""
-
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'order', 'templates'),
     os.path.join(BASE_DIR, 'app', 'templates'),
 )
+
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
