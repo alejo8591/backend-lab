@@ -1,6 +1,7 @@
 #-*- encoding:utf-8 -*-
 from django.db import models
 import datetime, pytz
+from django.utils.text import slugify
 
 class Customer(models.Model):
     customer_name = models.CharField(max_length=128,
@@ -18,17 +19,20 @@ class Customer(models.Model):
                                     verbose_name='Teléfono',
                                     help_text='Ingrese el Teléfono.')
 
-    date_created_customer = models.DateTimeField(auto_now=True)
+    customer_slug = models.SlugField(max_length=128, blank=True, null=True)
 
-    date_updated_customer = models.DateTimeField()
-
+    # http://stackoverflow.com/questions/1737017/django-auto-now-and-auto-now-add
+    date_created_customer = models.DateTimeField(auto_now_add=True)
+    # http://jbisbee.blogspot.com/2013/07/djangos-datetimefield-autonow-option.html
+    date_updated_customer = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         # http://stackoverflow.com/questions/12015170/how-do-i-automatically-get-the-timezone-offset-for-my-local-time-zone
-        now_utc = pytz.utc.localize(datetime.datetime.now())
+        #now_utc = pytz.utc.localize(datetime.datetime.now())
 
         #self.date_updated_customer = datetime.datetime.now()
-        self.date_updated_customer = now_utc.astimezone(pytz.timezone('America/Bogota'))
+        #self.date_updated_customer = now_utc.astimezone(pytz.timezone('America/Bogota'))
+        self.customer_slug = slugify(self.customer_name)
 
         super(Customer, self).save(*args, **kwargs)
 
@@ -53,7 +57,7 @@ class Product(models.Model):
                                     verbose_name='Descripción de Producto',
                                     help_text='Indique el Tipo de Producto.')
 
-    date_created_product = models.DateTimeField(auto_now=True)
+    date_created_product = models.DateTimeField(auto_now_add=True)
 
     date_updated_product = models.DateTimeField()
 
@@ -80,7 +84,7 @@ class Stock(models.Model):
                                     verbose_name='Cantidad',
                                     help_text='Cantidad del Producto.')
 
-    date_created_stock = models.DateTimeField(auto_now=True)
+    date_created_stock = models.DateTimeField(auto_now_add=True)
 
     date_updated_stock = models.DateTimeField()
 
@@ -110,7 +114,7 @@ class Order(models.Model):
                                     verbose_name='Cantidad',
                                     help_text='Cantidad del Producto.')
 
-    order_date = models.DateField(auto_now=True)
+    order_date = models.DateField(auto_now_add=True)
 
     date_updated_order = models.DateTimeField()
 
