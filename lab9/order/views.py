@@ -29,12 +29,20 @@ def order(request, order_id):
     return render(request, 'detail.html', context)
 
 
-def customer(request, customer_id):
+def customer(request, customer_slug):
+
+    """
+        For update tuples
+        >>> from order.models import Customer
+        >>> customers = Customer.objects.all()
+        >>> for customer in customers.iterator():
+        ...     customer.save()
+    """
 
     context = {}
 
     try:
-        customer = Customer.objects.get(id=customer_id)
+        customer = Customer.objects.get(customer_slug=customer_slug)
 
         context.update({'customer':customer, 'title': 'Detalle del Cliente'})
 
