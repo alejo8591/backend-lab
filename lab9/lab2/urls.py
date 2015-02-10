@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^order/', include('order.urls')),
     url(r'^app/', include('app.urls')),
+    url(r'^account/', include('account.urls')),
 )
 
 #if not settings.DEBUG:
