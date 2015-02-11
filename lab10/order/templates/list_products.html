@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>{{ title }}</title>
-  </head>
-  <body>
+{% extends 'order_base.html' %}
+{% load static %}
+{% block body_block %}
     {% if products %}
       <h1>{{ title }}</h1>
       <ul>
@@ -23,5 +18,4 @@
     <h2>Menú de Listados</h2>
     <a href="{% url 'list_products' %}">Lista de Productos</a>
     <a href="{% url 'order_index' %}">Lista de Ordenes</a>
-  </body>
-</html>
+{% endblock %}
