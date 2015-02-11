@@ -1,11 +1,19 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/skeleton.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   {% block head_block %}{% endblock %}
 </head>
 <body>
-  {% block body_block %}{% endblock %}
+  <div class="container">
+    <div class="eleven columns">
+      {% block body_block %}{% endblock %}
+    </div>
+  </div>
 </body>
 </html>

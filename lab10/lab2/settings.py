@@ -82,15 +82,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
 STATIC_URL = '/static/'
 
-"""
-    STATICFILE_DIRS = (
-        os.path.join(BASE_DIR, 'order', 'templates'),
-        os.path.join(BASE_DIR, 'app', 'templates'),
-    )
-"""
+STATIC_PATH = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = (STATIC_PATH,)
 
 # http://stackoverflow.com/questions/3092865/django-view-load-template-from-calling-apps-dir-first
 TEMPLATE_LOADERS = (

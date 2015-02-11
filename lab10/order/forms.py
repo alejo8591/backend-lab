@@ -4,13 +4,16 @@ from order.models import Customer, Product, Stock, Order
 class CustomerForm(forms.ModelForm):
 
     customer_name = forms.CharField(max_length=128,
-                                    help_text='Ingrese el Nombre Completo.')
+                                    help_text='Ingrese el Nombre Completo.',
+                                    widget=forms.TextInput(attrs={'class':'u-full-width'}))
 
     customer_address = forms.CharField(max_length=64,
-                                    help_text='Ingrese la Direccion Completa.')
+                                    help_text='Ingrese la Direccion Completa.',
+                                    widget=forms.TextInput(attrs={'class':'u-full-width'}))
 
     customer_phone = forms.CharField(max_length=24,
-                                    help_text='Ingrese el Teléfono.')
+                                    help_text='Ingrese el Teléfono.',
+                                    widget=forms.TextInput(attrs={'class':'u-full-width'}))
 
     class Meta:
         model = Customer
@@ -21,16 +24,19 @@ class CustomerForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
 
     product_name = forms.CharField(max_length=128,
-                                    help_text='Indique Nombre del Producto.')
+                                    help_text='Indique Nombre del Producto.',
+                                    widget=forms.TextInput(attrs={'class':'u-full-width'}))
 
     product_price = forms.DecimalField(max_digits=64,
                                     decimal_places = 2,
-                                    help_text='Precio del Producto.', initial=0)
+                                    help_text='Precio del Producto.', initial=0,
+                                    widget=forms.TextInput(attrs={'class':'u-full-width'}))
 
     product_type = forms.CharField(max_length=128,
-                                    help_text='Indique el Tipo de Producto.')
+                                    help_text='Indique el Tipo de Producto.',
+                                    widget=forms.TextInput(attrs={'class':'u-full-width'}))
 
-    product_description = forms.CharField(widget=forms.Textarea,
+    product_description = forms.CharField(widget=forms.Textarea(attrs={'class':'u-full-width'}),
                                     help_text='Indique el Tipo de Producto.')
 
     class Meta:
@@ -41,12 +47,14 @@ class ProductForm(forms.ModelForm):
 
 class StockForm(forms.ModelForm):
 
-    stock_quantity = forms.IntegerField(help_text='Cantidad del Producto.', initial=0)
+    stock_quantity = forms.IntegerField(help_text='Cantidad del Producto.', initial=0,
+                                        widget=forms.TextInput(attrs={'class':'u-full-width'}))
 
     class Meta:
         model = Stock
         exclude = ('stock_product_id','date_created_stock',  'date_updated_stock',)
         fields = ('stock_quantity',)
+
 
 class OrderForm(forms.ModelForm):
 
