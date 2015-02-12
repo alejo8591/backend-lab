@@ -1,6 +1,8 @@
 {% extends 'order_base.html' %}
 {% load static %}
 {% block body_block %}
+
+{% if user.is_authenticated %}
   {% if order %}
     <h3>{{ title }}</h3>
       <ul>
@@ -16,5 +18,9 @@
     <ul>
         <li>Algo salio mal</li>
     </ul>
+  {% endif %}
+  {% else %}
+    <a href="{% url 'login' %}">Ingresar</a>
+    <a href="{% url 'register' %}">Registarme</a>
   {% endif %}
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, render_to_response, RequestContext
 from order.models import Order, Customer, Product, Stock
 from order.forms import CustomerForm, ProductForm, StockForm, OrderForm
+from django.contrib.auth.decorators import login_required
 
 def index(request):
 
@@ -14,6 +15,7 @@ def index(request):
     return render_to_response('order_index.html', context, context_instance=RequestContext(request))
 
 
+@login_required
 def order(request, order_id):
 
     context = {}
@@ -29,6 +31,7 @@ def order(request, order_id):
     return render(request, 'detail.html', context)
 
 
+@login_required
 def customer(request, customer_slug):
 
     """
@@ -52,6 +55,7 @@ def customer(request, customer_slug):
     return render(request, 'customer_detail.html', context)
 
 
+@login_required
 def product(request, product_id):
 
     context = {}
@@ -74,6 +78,7 @@ def product(request, product_id):
 
     return render(request, 'product_detail.html', context)
 
+@login_required
 def add_customer(request):
 
     if request.method == 'POST':
@@ -103,6 +108,7 @@ def add_customer(request):
     return render(request, 'add_customer.html',context)
 
 
+@login_required
 def add_product(request):
 
     if request.method == 'POST':
@@ -131,6 +137,7 @@ def add_product(request):
     return render(request, 'add_product.html',context)
 
 
+@login_required
 def add_order(request):
 
     if request.method == 'POST':
@@ -150,6 +157,7 @@ def add_order(request):
     return render(request, 'add_order.html',context)
 
 
+@login_required
 def list_customers(request):
 
     context = {}
@@ -161,6 +169,7 @@ def list_customers(request):
     return render(request, 'list_customers.html', context)
 
 
+@login_required
 def list_products(request):
 
     context = {}
@@ -172,6 +181,7 @@ def list_products(request):
     return render(request, 'list_products.html', context)
 
 
+@login_required
 def edit_customer(request, customer_id):
 
     context = {}
@@ -210,6 +220,7 @@ def edit_customer(request, customer_id):
     return render(request, 'add_customer.html', context)
 
 
+@login_required
 def edit_product(request, product_id, stock_id):
 
     context = {}

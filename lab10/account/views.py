@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from account.forms import UserForm, UserProfileForm
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 def register(request):
 
@@ -56,7 +58,7 @@ def register(request):
 
     # Render the template depending on the context.
     return render(request,
-            'register.html',
+            'account_register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
 
@@ -97,3 +99,12 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render(request, 'login.html', {})
+
+# Use the login_required() decorator to ensure only those logged in can access the view.
+@login_required
+def user_logout(request):
+    # Since we know the user is logged in, we can now just log them out.
+    logout(request)
+
+    # Take the user back to the homepage.
+    return HttpResponseRedirect('/account/login/')
