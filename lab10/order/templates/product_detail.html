@@ -1,6 +1,6 @@
 {% extends 'order_base.html' %}
 {% load static %}
-{% block body_block
+{% block body_block %}
   {% if product %}
     <h3>{{ title }}</h3>
     <a href="{% url 'edit_product' product.id stock.id %}">Editar Información del Producto</a>

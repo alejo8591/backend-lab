@@ -3,7 +3,7 @@ from order.models import Order, Customer, Product, Stock
 from order.forms import CustomerForm, ProductForm, StockForm, OrderForm
 from django.contrib.auth.decorators import login_required
 
-def index(request):
+def order_index(request):
 
     context = {}
 
@@ -63,7 +63,7 @@ def product(request, product_id):
     try:
         product = Product.objects.get(id=product_id)
 
-        context.update({'product':product,'title': 'Detalle del Cliente'})
+        context.update({'product': product,'title': 'Detalle del Producto'})
         try:
             stock = Stock.objects.get(stock_product_id=product_id)
 
@@ -98,7 +98,7 @@ def add_customer(request):
             """
             form.save()
 
-            return redirect(index)
+            return redirect(order_index)
 
         else:
             print(form.errors)
@@ -126,7 +126,7 @@ def add_product(request):
 
             stock_save.save()
 
-            return redirect('index')
+            return redirect(order_index)
 
         else:
             print(form.errors)
@@ -147,7 +147,7 @@ def add_order(request):
         if form.is_valid():
             form.save()
 
-            return redirect(index)
+            return redirect(order_index)
         else:
             print(form.errors)
 
