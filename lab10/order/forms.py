@@ -41,7 +41,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        excludes = ('date_created_product', 'date_updated_product',)
+        excludes = ('date_created_product', 'date_updated_product',  'product_views')
         fields = ('product_name', 'product_price', 'product_type', 'product_description',)
 
 

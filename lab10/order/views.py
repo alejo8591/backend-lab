@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRe
 from order.models import Order, Customer, Product, Stock
 from order.forms import CustomerForm, ProductForm, StockForm, OrderForm
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
+
 
 def order_index(request):
 
@@ -77,6 +79,7 @@ def product(request, product_id):
         context.update({'error': True})
 
     return render(request, 'product_detail.html', context)
+
 
 @login_required
 def add_customer(request):
@@ -176,9 +179,39 @@ def list_products(request):
 
     products = Product.objects.all()
 
-    context.update({'products':products, 'title': 'Listado de Productos'})
+    visits = int(request.COOKIES.get('visits', '1'))
 
-    return render(request, 'list_products.html', context)
+    if not visits:
+        visits = 1
+
+    context.update({'products':products, 'title': 'Listado de Productos', 'visits': visits})
+
+    reset_last_visit_time = False
+
+    response = render(request, 'list_products.html', context)
+
+    if 'last_visit' in request.COOKIES:
+
+        last_visit = request.COOKIES['last_visit']
+
+        last_visit_time = datetime.strptime(last_visit[:-7], '%Y-%m-%d %H:%M:%S')
+
+        if (datetime.now() - last_visit_time).seconds > 0:
+            visits += 1
+            reset_last_visit_time = True
+    else:
+        reset_last_visit_time = True
+
+        context['visits'] = visits
+
+        response = render(request, 'list_products.html', context)
+
+    if reset_last_visit_time:
+
+        response.set_cookie('last_visit', datetime.now())
+        response.set_cookie('visits', visits)
+
+    return response
 
 
 @login_required
