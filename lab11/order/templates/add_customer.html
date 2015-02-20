@@ -1,0 +1,34 @@
+{% extends 'order_base.html' %}
+{% load static %}
+{% block body_block %}
+
+{% if user.is_authenticated %}
+  <h1>Agregar Cliente</h1>
+  <div class="four columns">
+    {% if update and customer %}
+      <form id="category_form" method="post" action="{% url 'edit_customer' customer.id %}">
+
+    {% else %}
+
+      <form id="category_form" method="post" action="{% url 'add_customer' %}">
+
+    {% endif %}
+
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}<br />
+        {% endfor %}
+
+        <input type="submit" name="submit" value="Crear Usuario" />
+    </form>
+  </div>
+{% else %}
+  <a href="{% url 'login' %}">Ingresar</a>
+  <a href="{% url 'register' %}">Registarme</a>
+{% endif %}
+{% endblock %}
