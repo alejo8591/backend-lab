@@ -321,7 +321,7 @@ def edit_product(request, product_id, stock_id):
 """ AJAX """
 @login_required
 def like_product(request):
-
+    
     product_id = None
     likes = 0
     if request.is_ajax():
