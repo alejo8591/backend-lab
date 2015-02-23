@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, render_to_response, RequestContext
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, render_to_response, RequestContext, HttpResponse
 from order.models import Order, Customer, Product, Stock
 from order.forms import CustomerForm, ProductForm, StockForm, OrderForm
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+
+import json
 
 
 def order_index(request):
@@ -369,3 +371,15 @@ def like_product(request):
                 product.save()
 
     return HttpResponse(likes)
+
+
+@login_required
+def ajax_list_products(request):
+
+    if request.is_ajax():
+
+        customers = Customer.objects.values('customer_name', 'customer_phone', 'customer_address', 'id', 'customer_slug')
+
+        results = [customer for customer in customers]
+
+        return HttpResponse(json.dumps(results), content_type='application/json')

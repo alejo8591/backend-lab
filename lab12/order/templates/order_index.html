@@ -21,9 +21,17 @@
   <h2>Menú de Listados</h2>
   <a href="{% url 'list_customers' %}" class="button">Lista de Clientes</a>
   <a href="{% url 'list_products' %}" class="button">Lista de Productos</a>
-  <a href="{% url 'order_index' %}" class="button">Lista de Ordenes</a>
+  <a href="{% url 'order_index' %}" class="button">Lista de Ordenes</a><br />
+
+  <a class="button" id="customer_list_button">Lista de Clientes AJAX</a><br />
+  <ul id="customer_list">
+  </ul>
 {% else %}
   <a href="{% url 'login' %}" class="button button-primary">Ingresar</a>
   <a href="{% url 'register' %}" class="button button-primary">Registarme</a>
 {% endif %}
+
+<script src="{% static "js/jquery-1.11.2.min.js" %}"></script>
+<script src="{% static "js/csrf.js" %}"></script>
+<script src="{% static "js/lab12.js" %}"></script>
 {% endblock %}
