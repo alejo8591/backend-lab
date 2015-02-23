@@ -169,7 +169,37 @@ def list_customers(request):
 
     context.update({'customers':customers, 'title': 'Listado de Clientes'})
 
-    return render(request, 'list_customers.html', context)
+    visits = request.session.get('visits')
+
+    if not visits:
+        visits = 1
+
+    reset_last_time = False
+
+    last_visit = request.session.get('last_visit')
+
+    response = render(request, 'list_customers.html', context)
+
+    if last_visit:
+        last_visit_time = datetime.strptime(last_visit[:-7], '%Y-%m-%d %H:%M:%S')
+
+        if (datetime.now() - last_visit_time).seconds > 0:
+            visits += 1
+            reset_last_visit_time = True
+
+    else:
+        reset_last_visit_time = True
+
+    if reset_last_visit_time:
+        request.session['last_visit'] = str(datetime.now())
+        request.session['visits'] = visits
+
+        response.set_cookie('last_visit', request.session['last_visit'])
+        response.set_cookie('visits', request.session['visits'])
+
+    context.update({'visits': visits})
+
+    return response
 
 
 @login_required
@@ -318,3 +348,24 @@ def edit_product(request, product_id, stock_id):
         'stock': stock})
 
     return render(request, 'add_product.html', context)
+
+
+""" AJAX """
+@login_required
+def like_product(request):
+
+    product_id = None
+    likes = 0
+    if request.is_ajax():
+        product_id = request.POST['product_id']
+
+        if product_id:
+            product = Product.objects.get(id=product_id)
+
+            if product:
+                product.product_likes = 0 if product.product_likes == None else int(product.product_likes)
+                likes = product.product_likes + 1
+                product.product_likes = likes
+                product.save()
+
+    return HttpResponse(likes)

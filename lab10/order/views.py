@@ -169,31 +169,6 @@ def list_customers(request):
 
     context.update({'customers':customers, 'title': 'Listado de Clientes'})
 
-    visits = request.session.get('visits')
-
-    if not visits:
-        visits = 1
-
-    reset_last_time = False
-
-    last_visit = request.session.get('last_visit')
-
-    if last_visit:
-        last_visit_time = datetime.strptime(last_visit[:-7], '%Y-%m-%d %H:%M:%S')
-
-        if (datetime.now - last_visit_time).seconds > 0:
-            visit += 1
-            reset_last_visit_time = True
-
-    else:
-        reset_last_visit_time = True
-
-    if reset_last_visit_time:
-        request.session['last_visit'] = str(datetime.now())
-        request.session['visits'] = visits
-
-    context.update({'visits': visits})
-
     return render(request, 'list_customers.html', context)
 
 
