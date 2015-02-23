@@ -15,4 +15,5 @@ urlpatterns = patterns('',
     url(r'^add/$', views.add_order, name='add_order'),
     #url(r'^edit/$', views.edit_order, name='edit_order'),
     url(r'^customer/ajax/list/$', views.ajax_list_products, name='ajax_list_products'),
+    url(r'^customer/add/rest/$', views.add_customer_rest, name='add_customer_rest'),
 )

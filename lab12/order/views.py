@@ -386,6 +386,9 @@ def ajax_list_products(request):
 
         return HttpResponse(json.dumps(results), content_type='application/json')
 
+@login_required
+def add_customer_rest(request):
+    return render(request, 'add_product_ajax.html', {})
 
 """ REST """
 class CustomerViewSet(viewsets.ModelViewSet):
