@@ -3,8 +3,10 @@ from order.models import Order, Customer, Product, Stock
 from order.forms import CustomerForm, ProductForm, StockForm, OrderForm
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-
 import json
+
+from order.serializer import CustomerSerializer, ProductSerializer, StockSerializer, OrderSerializer
+from rest_framework import viewsets
 
 
 def order_index(request):
@@ -383,3 +385,21 @@ def ajax_list_products(request):
         results = [customer for customer in customers]
 
         return HttpResponse(json.dumps(results), content_type='application/json')
+
+
+""" REST """
+class CustomerViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class StockViewSet(viewsets.ModelViewSet):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
