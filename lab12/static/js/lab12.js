@@ -30,7 +30,9 @@ $(document).ready(function(){
     });
   });
 
-  $('#customer_button').click(function(e){
+  $('#customer_button').click(function(event){
+
+    event.preventDefault();
     var data;
 
     data = {
@@ -48,12 +50,70 @@ $(document).ready(function(){
       $('#customer_form>label, #customer_form>br').hide();
       $('#customer_form>input').attr('readonly', true);
       $('#customer_form>#customer_button').hide()
-      $('#customer_form').append('<a id="customer_update" class="button">Editar Cliente</a>');
+      $('#customer_update').show();
+      $('#customer_delete').show();
+      localStorage.setItem('data', JSON.stringify(data));
       console.log(data);
       return false;
     }).fail(function(error){
       console.log(error);
     });
-    e.preventDefault();
+  });
+
+  $('#customer_update').click(function(event){
+    event.preventDefault();
+    if($('input[type="text"]').attr('readonly') === 'readonly'){
+      $('input').removeAttr('readonly');
+      event.preventDefault();
+    } else{
+      var local = JSON.parse(localStorage.getItem('data'));
+
+      var data = {
+        "customer_name": $('#customer_name').val(),
+        "customer_phone": $('#customer_phone').val(),
+        "customer_address": $('#customer_address').val()
+      };
+      $.ajax({
+        type: 'PUT',
+        url: local.url,
+        dataType: 'JSON',
+        data: data
+      }).done(function(data){
+        $('#customer_form>label, #customer_form>br').hide();
+        $('#customer_form>input').attr('readonly', true);
+        $('#customer_form>#customer_button').hide()
+        $('#customer_update').show();
+        $('#customer_delete').show();
+        console.log(data);
+        return false;
+      }).fail(function(xhr, error, displayError){
+        console.log(error);
+      });
+      event.preventDefault();
+    }
+  });
+
+  $('#customer_delete').click(function(e){
+    var local = JSON.parse(localStorage.getItem('data'));
+    $.ajax({
+      type: 'DELETE',
+      url: local.url,
+      statusCode: {
+        204: function(data){
+          $('#customer_form').prependTo('<a href="/order/" class="button">Ir al Inicio</a>');
+          $('#customer_form').hide();
+        }
+      }
+    }).done(function(data, textStatus, jqXHR){
+      // http://stackoverflow.com/questions/16219595/how-to-handle-a-204-response-in-jquery-ajax
+      if (jqXHR.status == 204) {
+        console.log(jqXHR.status);
+        $('h1').append('<a href="/order/" class="button">Ir al Inicio</a>');
+        $('#customer_form').hide();
+      }
+    }).fail(function(xhr, error, displayError){
+      console.log(error);
+    });
+    event.preventDefault();
   });
 });

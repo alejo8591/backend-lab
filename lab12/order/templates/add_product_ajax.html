@@ -3,7 +3,7 @@
 {% block body_block %}
   <h1>Agregar Cliente</h1>
 
-  <form id="customer_form" method="post">
+  <form id="customer_form">
     <label for="customer_name">Nombre</label>
     <input type="text" id="customer_name" name="customer_name" placeholder="Nombre del Cliente" />
     <label for="customer_phone">Teléfono</label>
@@ -11,6 +11,8 @@
     <label for="customer_address">Dirección</label>
     <input type="text" id="customer_address" name="customer_address" placeholder="Dirección del Cliente" /><br />
     <input type="submit" name="submit" id="customer_button" value="Crear Cliente" />
+    <input type="submit" id="customer_update" value="Editar" style="display: none;" />
+    <input type="submit" id="customer_delete" value="Eliminar" style="display: none;" />
   </form>
   <script src="{% static "js/jquery-1.11.2.min.js" %}"></script>
   <script src="{% static "js/csrf.js" %}"></script>
