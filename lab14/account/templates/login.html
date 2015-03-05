@@ -1,0 +1,19 @@
+{% extends 'order_base.html' %}
+{% load static %}
+{% block body_block %}
+  <h1 class="ubication-left">Login</h1>
+  <div class="ubication-left">
+    {% if is_auth and name %}
+      Hola <h4>{{ name }}</h4> ya te encuentras conectado deseas <a href="{% url 'logout' %}">Cerrar Sesión</a>?.
+    {% else %}
+      <form id="login_form" method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          Username: <input type="text" name="username" value="" size="50" />
+          <br />
+          Password: <input type="password" name="password" value="" size="50" />
+          <br />
+          <input type="submit" value="submit" class="button-primary" />
+      </form>
+    {% endif %}
+  </div>
+{% endblock %}
