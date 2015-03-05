@@ -6,11 +6,11 @@
       <h3>{{ title }}</h3>
         <ul>
           <li>Número de la Orden: {{ order.id }}</li>
-          <li>Nombre del Cliente: {{ order.order_customer_id }} <a href="{% url 'customer' order.order_customer_id.id %}">Información</a></li>
+          <li>Nombre del Cliente: {{ order.order_customer_id }} <a href="{% url 'customer' order.order_customer_id.customer_slug %}">Información</a></li>
           <li>Producto de la Orden: {{ order.order_product_id }} <a href="{% url 'product' order.order_product_id.id %}">Ver Detalle</a></li>
           <li>Cantidad del Producto de la Orden: {{ order.order_amount }}</li>
         </ul>
-      <a href="{% url 'index' %}">Inicio</a>
+      <a href="{% url 'order_index' %}">Inicio</a>
     {% endif %}
 
     {% if error %}

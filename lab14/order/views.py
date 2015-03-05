@@ -7,10 +7,11 @@ import json
 from order.serializer import CustomerSerializer, ProductSerializer, StockSerializer, OrderSerializer
 from rest_framework import viewsets
 
-from django.views.generic import TemplateView, FormView, RedirectView, DetailView
+from django.views.generic import TemplateView, FormView, RedirectView, DetailView, CreateView
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+
 
 class OrderIndexView(TemplateView):
 
@@ -45,100 +46,56 @@ class OrderDetailView(DetailView):
 
         return context
 
-"""
-@login_required
-def order(request, order_id):
 
-    context = {}
-    try:
-        order = Order.objects.get(id=order_id)
+class CustomerDetailView(DetailView):
 
-        context.update({'order':order, 'title': 'Detalle de la Orden'})
+    model = Customer
+    slug_url_kwarg = 'customer_slug'
+    slug_field = 'customer_slug'
+    template_name = 'customer_detail.html'
 
-    except Order.DoesNotExist:
+    def get_context_data(self, **kwargs):
+        context = super(CustomerDetailView, self).get_context_data(**kwargs)
 
-        context.update({'error': True})
+        context.update({'title': 'Detalle del Cliente'})
 
-    return render(request, 'detail.html', context)
-
-"""
-
-@login_required
-def customer(request, customer_slug):
-
-    """
-        For update tuples
-        >>> from order.models import Customer
-        >>> customers = Customer.objects.all()
-        >>> for customer in customers.iterator():
-        ...     customer.save()
-    """
-
-    context = {}
-
-    try:
-        customer = Customer.objects.get(customer_slug=customer_slug)
-
-        context.update({'customer':customer, 'title': 'Detalle del Cliente'})
-
-    except Customer.DoesNotExist:
-        context.update({'error': True})
-
-    return render(request, 'customer_detail.html', context)
+        return context
 
 
-@login_required
-def product(request, product_id):
+class ProductDetailView(DetailView):
 
-    context = {}
+    model = Product
+    pk_url_kwarg = 'product_id'
+    template_name = 'product_detail.html'
 
-    try:
-        product = Product.objects.get(id=product_id)
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(**kwargs)
 
-        context.update({'product': product,'title': 'Detalle del Producto'})
-        try:
-            stock = Stock.objects.get(stock_product_id=product_id)
+        """
+            They are passed in the old way.
 
-            context.update({'stock':stock})
+            You access them via self.args and self.kwargs,
+            for positional and keyword arguments respectively.
+            In your case, self.kwargs['id'] would do the trick.
 
-        except Stock.DoesNotExist:
+            Edit because you've overridden get() but not preserved the signature.
+            If you're overriding a method, always do def get(self, request, *args, **kwargs)
+        """
 
-            context.update({'error_stock':True})
+        stock = Stock.objects.get(stock_product_id=int(self.kwargs['product_id']))
 
-    except Product.DoesNotExist:
-        context.update({'error': True})
+        context.update({'title': 'Listado de Ordenes', 'stock': stock})
 
-    return render(request, 'product_detail.html', context)
+        return context
 
 
-@login_required
-def add_customer(request):
+class CustomerCreateView(CreateView):
 
-    if request.method == 'POST':
-
-        form = CustomerForm(request.POST)
-
-        if form.is_valid():
-            """
-                Este método save () acepta un argumento cometer palabra clave opcional,
-                que acepta Verdadero o Falso. Si se llama a save () con comprometes = False,
-                entonces se volverá un objeto que aún no se ha guardado en la base de datos.
-                En este caso, le toca a usted para llamar a save() en la instancia del modelo resultante.
-                Esto es útil si usted quiere hacer un tratamiento
-                personalizado en el objeto antes de guardarlo,
-                o si desea utilizar una de las opciones especializadas de ahorro de modelo.
-                cometer es true de forma predeterminada.
-            """
-            form.save()
-
-            return redirect(order_index)
-
-        else:
-            print(form.errors)
-
-    else:
-        context = {'form': CustomerForm()}
-    return render(request, 'add_customer.html',context)
+    model = Customer
+    template_name = 'add_customer.html'
+    fields = ['customer_name', 'customer_phone', 'customer_address']
+    form_class = CustomerForm
+    success_url = '/order/'
 
 
 @login_required
