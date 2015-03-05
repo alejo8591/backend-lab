@@ -1,10 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect, HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from account.forms import UserForm, UserProfileForm
-from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
-from django.views.generic import View, TemplateView, FormView
+from django.views.generic import View, TemplateView, FormView, RedirectView
 
 class RegisterView(FormView):
     template_name = 'account_register.html'
@@ -101,7 +101,6 @@ class LoginView(TemplateView):
             return HttpResponse("Invalid login details supplied.")
 
 #class ProfileView(TemplateView):
-
 @login_required
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
@@ -109,3 +108,14 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/account/login/')
+
+#@login_required
+class LogoutView(RedirectView):
+
+    url = '/'
+
+    @method_decorator(login_required)
+    def get(self, request, *args, **kwargs):
+        # Since we know the user is logged in, we can now just log them out.
+        logout(request)
+        return HttpResponseRedirect('/order/')
