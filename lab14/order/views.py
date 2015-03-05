@@ -98,6 +98,15 @@ class CustomerCreateView(CreateView):
     success_url = '/order/'
 
 
+class OrderCreateView(CreateView):
+
+    model = Order
+    template_name = 'add_order.html'
+    fields = ['order_customer_id', 'order_product_id', 'order_amount']
+    form_class = OrderForm
+    success_url = '/order/'
+
+
 @login_required
 def add_product(request):
 
@@ -125,26 +134,6 @@ def add_product(request):
         context = {'product_form': ProductForm(prefix='product'), 'stock_form': StockForm(prefix='stock')}
 
     return render(request, 'add_product.html',context)
-
-
-@login_required
-def add_order(request):
-
-    if request.method == 'POST':
-
-        form = OrderForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-
-            return redirect(order_index)
-        else:
-            print(form.errors)
-
-    else:
-        context = {'form':OrderForm()}
-
-    return render(request, 'add_order.html',context)
 
 
 @login_required
