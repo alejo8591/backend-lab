@@ -3,7 +3,7 @@
  */
 var http = require('http');
 
-// Variable para la logica y resolucion a las url
+// Variable para la logica y resolución a las url
 var logic = require('./logic');
 
 var server = http.createServer(function(req, res){
