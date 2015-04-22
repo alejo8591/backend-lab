@@ -1,7 +1,7 @@
 /**
  * Created by alejo8591 on 21/04/15.
  */
-angular.module('lab4', ['ngRoute'])
+angular.module('lab4', ['ngRoute', 'lab4.controllers', 'lab4.services'])
 .config(function($routeProvider){
 
     'use strict';
@@ -11,7 +11,7 @@ angular.module('lab4', ['ngRoute'])
         })
         .when('/data', {
             controller: 'Lab4Controller',
-            templateUrl: 'js/templates/home.html'
+            templateUrl: 'js/templates/data.html'
         })
         .otherwise({
             redirectTo: '/'
