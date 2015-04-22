@@ -36,13 +36,11 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, 'assets')));
 
 // Quien resuelve y gestiona las url a través del controlador
-
 var controllers = require('./controllers/router');
 
 app.use(controllers);
 
 // En el caso en que la url no sea conocida o resuelta
-
 app.get('*', function(req, res){
 	res.status(405).send('Method not allowed');
 });
