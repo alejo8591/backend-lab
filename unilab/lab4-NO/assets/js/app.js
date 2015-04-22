@@ -7,7 +7,7 @@ angular.module('lab4', ['ngRoute'])
         'use strict';
 		var routeConfig = {
 			controller: 'Lab4Controller',
-			templateUrl: 'list.html',
+			templateUrl: 'home.html',
 			resolve: {
 				store: function(lab4Storage){
 					// Get the correct module (API or localStorage).
