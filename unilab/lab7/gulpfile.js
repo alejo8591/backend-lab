@@ -8,9 +8,9 @@ var gulp = require('gulp'),
 /*
 * Configuración de la tarea 'demo'
 */
-gulp.task('concat-files', function () {
+gulp.task('concat-files', function(){
 	gulp.src('source/*.js')
-		.pipe(concat('lab7.min.js'))
+		.pipe(concat('*.min.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest('build/'))
 });
