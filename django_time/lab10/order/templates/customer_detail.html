@@ -1,0 +1,21 @@
+{% extends 'order_base.html' %}
+{% load static %}
+{% block body_block %}
+  {% if customer %}
+    <h3>{{ title }}</h3>
+    <a href="{% url 'edit_customer' customer.id %}">Editar Información Cliente</a>
+      <ul>
+        <li>Nombre del Cliente: {{ customer.customer_name }}</li>
+        <li>Dirección del Cliente: {{ customer.customer_address }}</li>
+        <li>Teléfono del Cliente: {{ customer.customer_phone }}</li>
+        <li>Ultima Actualización del Cliente: {{ customer.date_updated_customer }}</li>
+      </ul>
+    <a href="{% url 'order_index' %}">Inicio</a>
+  {% endif %}
+
+  {% if error %}
+    <ul>
+        <li>Algo salio mal</li>
+    </ul>
+  {% endif %}
+{% endblock %}

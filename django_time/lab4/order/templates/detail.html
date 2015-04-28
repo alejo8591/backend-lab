@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    {% if order %}
+      <h3>{{ title }}</h3>
+        <ul>
+          <li>Número de la Orden: {{ order.id }}</li>
+          <li>Nombre del Cliente: {{ order.order_customer_id }}</li>
+          <li>Producto de la Orden: {{ order.order_product_id }}</li>
+          <li>Cantidad del Producto de la Orden: {{ order.order_amount }}</li>
+        </ul>
+      <a href="{% url 'index' %}">Inicio</a>
+    {% endif %}
+
+    {% if error %}
+      <ul>
+          <li>Algo salio mal</li>
+      </ul>
+    {% endif %}
+  </body>
+</html>

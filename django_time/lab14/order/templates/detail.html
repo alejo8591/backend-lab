@@ -1,0 +1,25 @@
+{% extends 'order_base.html' %}
+{% load static %}
+{% block body_block %}
+{% if user.is_authenticated %}
+  {% if order %}
+      <h3>{{ title }}</h3>
+        <ul>
+          <li>Número de la Orden: {{ order.id }}</li>
+          <li>Nombre del Cliente: {{ order.order_customer_id }} <a href="{% url 'customer' order.order_customer_id.customer_slug %}">Información</a></li>
+          <li>Producto de la Orden: {{ order.order_product_id }} <a href="{% url 'product' order.order_product_id.id %}">Ver Detalle</a></li>
+          <li>Cantidad del Producto de la Orden: {{ order.order_amount }}</li>
+        </ul>
+      <a href="{% url 'order_index' %}">Inicio</a>
+    {% endif %}
+
+    {% if error %}
+      <ul>
+          <li>Algo salio mal</li>
+      </ul>
+    {% endif %}
+  {% else %}
+    <a href="{% url 'login' %}">Ingresar</a>
+    <a href="{% url 'register' %}">Registarme</a>
+  {% endif %}
+{% endblock %}
