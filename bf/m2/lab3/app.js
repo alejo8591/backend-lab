@@ -1,4 +1,5 @@
-var book = {name: 'Practical Node.js',
+var book = {
+    name: 'Practical Node.js',
     publisher: 'Apress',
     keywords: 'node.js express.js mongodb websocket oauth',
     discount: 'PNJS15'
@@ -16,7 +17,6 @@ app.set('view engine', 'jade');
 app.set('port', process.env.PORT || 3000);
 
 app.set('trust proxy', true);
-app.set('jsonp callback name', 'cb');
 app.set('json replacer', function(key, value){
     if (key === 'discount')
         return undefined;
@@ -30,9 +30,6 @@ app.set('strict routing', true);
 app.set('x-powered-by', false);
 app.set('subdomain offset', 3);
 
-app.get('/jsonp', function(request, response){
-    response.jsonp(book);
-});
 app.get('/json', function(request, response){
     response.send(book);
 });

@@ -2,27 +2,25 @@ var express = require('express'),
     path = require('path'),
     fs = require('fs'),
     compression = require('compression'),
-    logger = require('morgan'),
-    timeout = require('connect-timeout'),
-    methodOverride = require('method-override'),
+    morgan = require('morgan'),
+    method_override = require('method-override'),
     responseTime = require('response-time'),
-    favicon = require('serve-favicon'),
     serveIndex = require('serve-index'),
     busboy = require('connect-busboy'),
-    errorhandler = require('errorhandler');
+    error_handler = require('errorhandler');
 
 var app = express();
+
+var access_log_stream = fs.createWriteStream(__dirname + '/access.log',{flags: 'a'});
 
 app.set('view cache', true);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set('port', process.env.PORT || 3000);
-app.use(compression({threshold: 1}));
-app.use(logger('combined'));
-// app.use(logger(':method :url :status :res[content-length] - :response-time ms'));
-app.use(methodOverride('_method'));
+// app.use(compression({threshold: 1}));
+app.use(morgan('combined', {stream: access_log_stream}));
+app.use(method_override('_method'));
 app.use(responseTime(4));
-// app.use(favicon(path.join('public', 'favicon.ico')));
 
 app.use('/shared', serveIndex(
     path.join('public','shared'),
@@ -31,6 +29,7 @@ app.use('/shared', serveIndex(
 app.use(express.static('public'));
 
 app.use('/upload', busboy({immediate: true }));
+
 app.use('/upload', function(request, response) {
     request.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
         file.on('data', function(data){
@@ -47,19 +46,6 @@ app.use('/upload', function(request, response) {
     })
 });
 
-app.get(
-    '/slow-request',
-    timeout('1s'),
-    function(request, response, next) {
-        setTimeout(function(){
-            if (request.timedout) return false;
-            return next();
-        }, 999 + Math.round(Math.random()));
-    }, function(request, response, next) {
-        response.send('ok');
-    }
-);
-
 app.delete('/purchase-orders', function(request, response){
     console.log('The DELETE route has been triggered');
     response.status(204).end();
@@ -74,10 +60,12 @@ app.get('/response-time', function(request, response){
 app.get('/', function(request, response){
     response.send('Pro Express.js Middleware');
 });
+
 app.get('/compression', function(request, response){
     response.render('index');
-})
-app.use(errorhandler());
+});
+
+app.use(error_handler());
 var server = app.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + server.address().port);
 });
