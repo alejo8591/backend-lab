@@ -19,7 +19,9 @@ app.engine('template', jade.__express);
 app.engine('swig', consolidate.swig);
 
 app.set('port', process.env.PORT || 3000);
+
 app.use(morgan('combined', {stream: access_log_stream}));
+
 app.use(express.static('public'));
 
 app.get('/', function(request, response){
